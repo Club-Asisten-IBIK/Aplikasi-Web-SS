@@ -1,0 +1,87 @@
+body {
+    background: #fff4f4;
+}
+
+.table-employee th,
+.table-employee td {
+    background: transparent !important;
+}
+
+.table-employee th {
+    font-weight: 600;
+    color: #7c7c7c;
+    font-size: 1rem;
+}
+
+.table-employee td {
+    vertical-align: middle;
+    font-size: 1.05rem;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: #fff;
+}
+
+.chip.teacher {
+    background: #b6f7b0;
+    color: #2e7d32;
+    border-color: #b6f7b0;
+}
+
+.chip.staff {
+    background: #ffe89c;
+    color: #c63e42;
+    border-color: #ffe89c;
+}
+
+.chip.mentor {
+    background: #b0e6ff;
+    color: #2e7d32;
+    border-color: #b0e6ff;
+}
+
+.chip.headmaster {
+    background: #ffb3b3;
+    color: #c63e42;
+    border-color: #ffb3b3;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    object-fit: cover;
+}
+
+.btn-dark {
+    background: #231f20;
+    border: none;
+}
+
+.btn-dark:hover {
+    background: #c63e42;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #c63e42;
+    font-size: 1.2rem;
+}
+
+.icon-btn.edit {
+    color: #f3a13b;
+}
+
+.icon-btn.delete {
+    color: #c63e42;
+}

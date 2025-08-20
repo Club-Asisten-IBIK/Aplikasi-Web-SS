@@ -1,0 +1,57 @@
+body {
+    background: #fff4f4;
+}
+.table-role th,
+.table-role td {
+    background: transparent !important;
+}
+.table-role th {
+    font-weight: 600;
+    color: #7c7c7c;
+    font-size: 1rem;
+}
+.table-role td {
+    vertical-align: middle;
+    font-size: 1.05rem;
+}
+.chip-menu {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-right: 0.3rem;
+    margin-bottom: 0.2rem;
+}
+.chip-menu.red {
+    background: #ffd6d6;
+    color: #c63e42;
+}
+.chip-menu.blue {
+    background: #b0e6ff;
+    color: #231f20;
+}
+.chip-menu.green {
+    background: #b6f7b0;
+    color: #2e7d32;
+}
+.btn-dark {
+    background: #231f20;
+    border: none;
+}
+.btn-dark:hover {
+    background: #c63e42;
+}
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #c63e42;
+    font-size: 1.2rem;
+}
+.icon-btn.edit {
+    color: #f3a13b;
+}
+.icon-btn.delete {
+    color: #c63e42;
+}

@@ -18,7 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login',[AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login']);
 Route::get('/sidebar', function () {
     return view('layouts.navbar.navigation');
+});
+Route::get('/dashboard', function () {
+    return view('mainpage.dashboard');
+});
+Route::get('/employee', function () {
+    return view('user-management.employee');
+});
+Route::get('/role', function () {
+    return view('user-management.role');
 });

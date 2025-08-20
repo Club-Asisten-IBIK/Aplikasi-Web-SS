@@ -52,3 +52,11 @@ body {
 .dropdown-toggle::after {
     margin-left: auto;
 }
+.badge.bg-success {
+    background-color: #b6f7b0 !important;
+    color: #2e7d32 !important;
+}
+.badge.bg-warning {
+    background-color: #ffe89c !important;
+    color: #c63e42 !important;
+}

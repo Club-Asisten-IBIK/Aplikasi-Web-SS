@@ -1,83 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Side Navigation</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-</head>
-<body>
-    <div class="sidebar">
-        <div class="logo">
-            <img src="{{asset('asset/image.png')}}" alt="Logo" class="img-fluid">
-        </div>
-        
-        <ul class="sidebar-menu">
-            <li>
-                <a href="#" class="d-flex align-items-center">
-                    <i class="bi bi-speedometer"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="#" class="d-flex align-items-center dropdown-toggle">
-                    <i class="bi bi-person-fill"></i> User Management
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#" class="d-flex align-items-center ">Employee</a></li>
-                    <li><a href="#" class="d-flex align-items-center ">Role</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="d-flex align-items-center dropdown-toggle">
-                    <i class="bi bi-graph-up"></i> Finance Management
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#" class="d-flex align-items-center ">Budget</a></li>
-                    <li><a href="#" class="d-flex align-items-center ">Reports</a></li>
-                </ul>
-            </li>
-        </ul>
+<div class="d-flex flex-column vh-100 bg-danger px-4 py-3 text-white"
+    style="width: 302px; position: fixed; left: 0; top: 0;">
+    <div class="d-flex justify-content-center mb-4">
+        <img src="{{ asset('asset/image.png') }}" alt="Logo" class="img-fluid" style="max-width: 300px;">
     </div>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-
-            dropdownToggles.forEach(function (toggle) {
-                toggle.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    
-                    let menu = toggle.nextElementSibling;
-
-                    // Tutup semua dropdown kecuali yang diklik
-                    document.querySelectorAll(".dropdown-menu").forEach(function (otherMenu) {
-                        if (otherMenu !== menu) {
-                            otherMenu.style.display = "none";
-                        }
-                    });
-
-                    // Toggle tampilan dropdown yang diklik
-                    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-                });
-            });
-
-            // Tutup dropdown saat klik di luar sidebar
-            document.addEventListener("click", function (event) {
-                if (!event.target.closest(".sidebar")) {
-                    document.querySelectorAll(".dropdown-menu").forEach(function (menu) {
-                        menu.style.display = "none";
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    <ul class="nav flex-column fw-normal">
+        <li class="nav-item mb-2">
+            <a href="{{ url('/dashboard') }}"
+                class="nav-link text-white d-flex align-items-center rounded px-3 py-2
+                {{ Request::is('dashboard') ? 'active bg-white bg-opacity-25' : '' }}">
+                <i class="bi bi-speedometer me-2"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2 dropdown-toggle"
+                data-bs-toggle="collapse" data-bs-target="#userMenu">
+                <i class="bi bi-person-fill me-2"></i> User Management
+            </a>
+            <ul class="collapse list-unstyled ps-4 {{ Request::is('employee') ? 'show' : '' }}" id="userMenu">
+                <li>
+                    <a href="{{ url('/employee') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('employee') ? 'active bg-white bg-opacity-25' : '' }}">
+                        Employee
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/role') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('/role') ? 'active bg-white bg-opacity-25' : '' }}">
+                        Role
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2 dropdown-toggle"
+                data-bs-toggle="collapse" data-bs-target="#financeMenu">
+                <i class="bi bi-graph-up me-2"></i> Finance Management
+            </a>
+            <ul class="collapse list-unstyled ps-4" id="financeMenu">
+                <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Budget</a></li>
+                <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Reports</a></li>
+            </ul>
+        </li>
+        <li class="nav-item mt-4 mb-2">
+            <span class="small text-uppercase opacity-75">Other</span>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2">
+                <i class="bi bi-gear me-2"></i> Settings
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2">
+                <i class="bi bi-question-circle me-2"></i> Help
+            </a>
+        </li>
+    </ul>
+</div>
