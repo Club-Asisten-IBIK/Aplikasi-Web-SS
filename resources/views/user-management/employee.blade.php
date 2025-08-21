@@ -26,381 +26,287 @@
             <table class="table table-employee align-middle">
                 <thead>
                     <tr>
-                        <th style="width:40px;"><input type="checkbox"></th>
                         <th>Name</th>
-                        <th>Position</th>
                         <th>Gender</th>
-                        <th>Date of Birth</th>
-                        <th>Joining Date</th>
+                        <th>Front Title</th>
+                        <th>Back Title</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Address</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/men/1.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">Muhammad Alfan</div>
-                                    <div class="text-secondary small">YPSS-PDSS-001</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip teacher">Teacher</span>
-                            <span class="chip staff">Staff</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/2.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">KatarinaAndrea123</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip staff">Staff</span>
-                        </td>
-                        <td>Female</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/men/3.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">EcaAgipali</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip mentor">Mentor</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/4.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">MhmdAlfan1502</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip teacher">Teacher</span>
-                        </td>
-                        <td>Female</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/5.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">KatarinaAndrea123</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip staff">Staff</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/men/6.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">EcaAgipali</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip mentor">Mentor</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/7.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">MhmdAlfan1502</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip teacher">Teacher</span>
-                        </td>
-                        <td>Female</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/8.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">KatarinaAndrea123</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip staff">Staff</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/men/9.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">EcaAgipali</div>
-                                    <div class="text-secondary small">212310017@gmail.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip mentor">Mentor</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>July 5, 2024</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/men/10.jpg" class="avatar" alt="">
-                                <div>
-                                    <div class="fw-semibold">Adrian Adhari</div>
-                                    <div class="text-secondary small">Headmaster</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip headmaster">Headmaster</span>
-                        </td>
-                        <td>Female</td>
-                        <td>July 5, 2005</td>
-                        <td>08957293759</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://randomuser.me/api/portraits/women/11.jpg" class="avatar"
-                                    alt="">
-                                <div>
-                                    <div class="fw-semibold">Risma Handayani</div>
-                                    <div class="text-secondary small">Teacher</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="chip teacher">Teacher</span>
-                        </td>
-                        <td>Male</td>
-                        <td>July 5, 2005</td>
-                        <td>08957293759</td>
-                        <td>
-                            <button class="icon-btn edit"><i class="bi bi-pencil"></i></button>
-                            <button class="icon-btn delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    @foreach ($employees as $employee)
+                        <tr>
+                            <td>{{ $employee->fullname }}</td>
+                            <td>{{ $employee->gender }}</td>
+                            <td>{{ $employee->fronttitle }}</td>
+                            <td>{{ $employee->backtitle }}</td>
+                            <td>{{ $employee->contact }}</td>
+                            <td>{{ $employee->email }}</td>
+                            <td>{{ $employee->address }}</td>
+                            <td>
+                                <button class="icon-btn edit" data-employeeid="{{ $employee->employeeid }}"
+                                    data-fullname="{{ $employee->fullname }}" data-gender="{{ $employee->gender }}"
+                                    data-fronttitle="{{ $employee->fronttitle }}"
+                                    data-backtitle="{{ $employee->backtitle }}" data-contact="{{ $employee->contact }}"
+                                    data-email="{{ $employee->email }}" data-address="{{ $employee->address }}"
+                                    data-bs-toggle="modal" data-bs-target="#editEmployeeModal">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="icon-btn delete" data-employeeid="{{ $employee->employeeid }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <!-- Modal Add Employee -->
-            <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content rounded-4" style="background:#fff4f4;">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title fw-bold" id="addEmployeeLabel">ADD EMPLOYEE</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <form>
-                            <div class="modal-body">
-                                <div class="d-flex flex-column align-items-center mb-3">
-                                    <div class="position-relative">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar"
-                                            width="120" height="120" class="rounded-circle bg-white border">
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm position-absolute bottom-0 end-0 rounded-circle"
-                                            style="background:#3b82f6;">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="mb-3 fw-bold">Personal Information</div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Fullname</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control"
-                                            placeholder="Fullname">
-                                    </div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Status</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7">
-                                        <select class="form-select">
-                                            <option>Laki-laki</option>
-                                            <option>Perempuan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Fronttitle</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control"
-                                            placeholder="Fronttitle"></div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Backtitle</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control" placeholder="Role">
-                                    </div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Contact</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control"
-                                            placeholder="Contact"></div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Email</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="mb-2 row align-items-center">
-                                    <label class="col-4 col-form-label fw-semibold">Addres</label>
-                                    <div class="col-1 text-end">:</div>
-                                    <div class="col-7"><input type="text" class="form-control"
-                                            placeholder="Address">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer border-0 justify-content-end">
-                                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal"
-                                    style="background:#6c6c6c;">Cancel</button>
-                                <button type="submit" class="btn btn-primary px-4"
-                                    style="background:#3b82f6;">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Success Modal -->
-            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content rounded-4 text-center p-4" style="border:0;">
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-center">
-                                <span class="rounded-circle d-flex align-items-center justify-content-center"
-                                    style="width:90px;height:90px;background:#6ee36b;">
-                                    <i class="bi bi-check-lg" style="font-size:2.5rem;color:#fff;"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="fw-semibold text-secondary" style="font-size:1.2rem;">Tambahkan Berhasil</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Script to show success modal after submit -->
-            @push('scripts')
-                <script>
-                    document.querySelector('#addEmployeeModal form').addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        var addModal = bootstrap.Modal.getInstance(document.getElementById('addEmployeeModal'));
-                        addModal.hide();
-                        setTimeout(function() {
-                            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                            successModal.show();
-                            setTimeout(function() {
-                                successModal.hide();
-                            }, 1500);
-                        }, 400);
-                    });
-                </script>
-            @endpush
         </div>
     </div>
+    <!-- Modal Add Employee -->
+    <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4" style="background:#fff4f4;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="addEmployeeLabel">ADD EMPLOYEE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('employee.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3 fw-bold">Personal Information</div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Fullname</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Fullname" name="fullname">
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Status</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <select class="form-select" name="gender">
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Fronttitle</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Fronttitle" name="fronttitle">
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Backtitle</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Backtitle" name="backtitle">
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Contact</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Contact" name="contact">
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Email</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Email" name="email">
+                            </div>
+                        </div>
+                        <div class="mb-2 row align-items-center">
+                            <label class="col-4 col-form-label fw-semibold">Address</label>
+                            <div class="col-1 text-end">:</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" placeholder="Address" name="address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 justify-content-end">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal"
+                            style="background:#6c6c6c;">Cancel</button>
+                        <button type="submit" class="btn btn-primary px-4" style="background:#3b82f6;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 text-center p-4" style="border:0;">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-center">
+                        <span class="rounded-circle d-flex align-items-center justify-content-center"
+                            style="width:90px;height:90px;background:#6ee36b;">
+                            <i class="bi bi-check-lg" style="font-size:2.5rem;color:#fff;"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="fw-semibold text-secondary" style="font-size:1.2rem;">Tambahkan Berhasil</div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Konfirmasi Delete -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 text-center p-4" style="border:0; background:#fff4f4;">
+                <div class="mb-3">
+                    <i class="bi bi-trash" style="font-size:2.5rem;color:#c63e42;"></i>
+                </div>
+                <div class="fw-semibold text-secondary mb-4" style="font-size:1.2rem;">
+                    Apakah anda yakin ingin menghapusnya
+                </div>
+                <div class="d-flex justify-content-center gap-3">
+                    <form id="deleteEmployeeForm" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn px-4" style="background:#c63e42;color:#fff;">Delete</button>
+                    </form>
+                    <button type="button" class="btn px-4" style="background:#6c6c6c;color:#fff;"
+                        data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Sukses Delete -->
+    <div class="modal fade" id="successDeleteModal" tabindex="-1" aria-labelledby="successDeleteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 text-center p-4" style="border:0;">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-center">
+                        <span class="rounded-circle d-flex align-items-center justify-content-center"
+                            style="width:90px;height:90px;background:#6ee36b;">
+                            <i class="bi bi-check-lg" style="font-size:2.5rem;color:#fff;"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="fw-semibold text-secondary" style="font-size:1.2rem;">Hapus Berhasil</div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edit Employee -->
+    <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4" style="background:#fff4f4;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="editEmployeeLabel">EDIT EMPLOYEE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editEmployeeForm" method="POST" action="">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="mb-3 fw-bold">Employee Information</div>
+                        <input type="text" name="fullname" id="editFullname" class="form-control mb-2"
+                            placeholder="Fullname">
+                        <select name="gender" id="editGender" class="form-select mb-2">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                        <input type="text" name="fronttitle" id="editFronttitle" class="form-control mb-2"
+                            placeholder="Fronttitle">
+                        <input type="text" name="backtitle" id="editBacktitle" class="form-control mb-2"
+                            placeholder="Backtitle">
+                        <input type="text" name="contact" id="editContact" class="form-control mb-2"
+                            placeholder="Contact">
+                        <input type="text" name="email" id="editEmail" class="form-control mb-2"
+                            placeholder="Email">
+                        <input type="text" name="address" id="editAddress" class="form-control mb-2"
+                            placeholder="Address">
+                    </div>
+                    <div class="modal-footer border-0 justify-content-end">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal"
+                            style="background:#6c6c6c;">Cancel</button>
+                        <button type="submit" class="btn btn-primary px-4" style="background:#3b82f6;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Sukses Edit -->
+    <div class="modal fade" id="successEditModal" tabindex="-1" aria-labelledby="successEditLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 text-center p-4" style="border:0;">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-center">
+                        <span class="rounded-circle d-flex align-items-center justify-content-center"
+                            style="width:90px;height:90px;background:#6ee36b;">
+                            <i class="bi bi-check-lg" style="font-size:2.5rem;color:#fff;"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="fw-semibold text-secondary" style="font-size:1.2rem;">Edit Berhasil</div>
+            </div>
+        </div>
+    </div>
+    @push('scripts')
+        <script>
+            // Edit button click
+            document.querySelectorAll('.icon-btn.edit').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var employeeId = this.getAttribute('data-employeeid');
+                    var form = document.getElementById('editEmployeeForm');
+                    form.action = '/employee/' + employeeId;
+                    document.getElementById('editFullname').value = this.getAttribute('data-fullname');
+                    document.getElementById('editGender').value = this.getAttribute('data-gender');
+                    document.getElementById('editFronttitle').value = this.getAttribute('data-fronttitle');
+                    document.getElementById('editBacktitle').value = this.getAttribute('data-backtitle');
+                    document.getElementById('editContact').value = this.getAttribute('data-contact');
+                    document.getElementById('editEmail').value = this.getAttribute('data-email');
+                    document.getElementById('editAddress').value = this.getAttribute('data-address');
+                });
+            });
+
+            // Delete button click
+            document.querySelectorAll('.icon-btn.delete').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var form = document.getElementById('deleteEmployeeForm');
+                    form.action = '/employee/' + this.getAttribute('data-employeeid');
+                    var modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+                    modal.show();
+                });
+            });
+
+            // Success modals
+            @if (session('added'))
+                setTimeout(function() {
+                    var modal = new bootstrap.Modal(document.getElementById('successModal'));
+                    modal.show();
+                    setTimeout(function() {
+                        modal.hide();
+                    }, 1200);
+                }, 400);
+            @endif
+            @if (session('edited'))
+                setTimeout(function() {
+                    var modal = new bootstrap.Modal(document.getElementById('successEditModal'));
+                    modal.show();
+                    setTimeout(function() {
+                        modal.hide();
+                    }, 1200);
+                }, 400);
+            @endif
+            @if (session('deleted'))
+                setTimeout(function() {
+                    var modal = new bootstrap.Modal(document.getElementById('successDeleteModal'));
+                    modal.show();
+                    setTimeout(function() {
+                        modal.hide();
+                    }, 1200);
+                }, 400);
+            @endif
+        </script>
+    @endpush
 @endsection

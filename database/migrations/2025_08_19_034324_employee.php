@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('employeeid', 20);
             $table->string('fullname', 100);
             $table->enum('gender', ['laki-laki', 'perempuan']);
-            $table->string('fronttitile', 20);
+            $table->string('fronttitle', 20);
             $table->string('backtitle', 20);
             $table->string('contact', 16);
             $table->string('email', 100);
