@@ -10,7 +10,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = DB::table('employee')->get();
-        return view('user-management.employee', compact('employees'));
+        return view('finance-management.employee', compact('employees'));
     }
 
     public function store(Request $request)

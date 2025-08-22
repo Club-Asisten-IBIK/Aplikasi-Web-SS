@@ -22,4 +22,12 @@ class Student extends Model
         'studentfeeamount',
         'contract'
     ];
+    public function parent()
+    {
+        return $this->hasOne(\App\Models\ParentModel::class, 'studentid', 'studentid');
+    }
+    public function schoolyear()
+    {
+        return $this->belongsTo(\App\Models\SchoolYear::class, 'schoolyearid', 'schoolyearid');
+    }
 }

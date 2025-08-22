@@ -12,4 +12,8 @@ class ParentModel extends Model
     protected $primaryKey = 'parentid';
     public $timestamps = false;
     protected $fillable = ['studentid', 'name', 'status', 'contact'];
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'studentid', 'studentid');
+    }
 }

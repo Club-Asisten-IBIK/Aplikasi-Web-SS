@@ -42,3 +42,8 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::delete('/user/{userid}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::put('/user/{userid}', [UserController::class, 'update'])->name('user.update');
+
+Route::get('/student', [\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+Route::put('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');

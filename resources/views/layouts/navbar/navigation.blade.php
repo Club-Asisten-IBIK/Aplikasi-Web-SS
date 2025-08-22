@@ -16,14 +16,7 @@
                 data-bs-toggle="collapse" data-bs-target="#userMenu">
                 <i class="bi bi-person-fill me-2"></i> User Management
             </a>
-            <ul class="collapse list-unstyled ps-4 {{ Request::is('employee') ? 'show' : '' }}" id="userMenu">
-                <li>
-                    <a href="{{ url('/employee') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('employee') ? 'active bg-white bg-opacity-25' : '' }}">
-                        Employee
-                    </a>
-                </li>
+            <ul class="collapse list-unstyled ps-4 {{ Request::is('role') ? 'show' : '' }}" id="userMenu">
                 <li>
                     <a href="{{ url('/role') }}"
                         class="nav-link text-white d-flex align-items-center px-2 py-1
@@ -38,6 +31,13 @@
                         User
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/student') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('/student') ? 'active bg-white bg-opacity-25' : '' }}">
+                        Student
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="nav-item mb-2">
@@ -45,7 +45,21 @@
                 data-bs-toggle="collapse" data-bs-target="#financeMenu">
                 <i class="bi bi-graph-up me-2"></i> Finance Management
             </a>
-            <ul class="collapse list-unstyled ps-4" id="financeMenu">
+            <ul class="collapse list-unstyled ps-4 {{ Request::is('employee') ? 'show' : '' }}" id="financeMenu">
+                <li>
+                    <a href="{{ url('/employee') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('employee') ? 'active bg-white bg-opacity-25' : '' }}">
+                        Employee
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/payroll') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('payroll') ? 'active bg-white bg-opacity-25' : '' }}">
+                        Payroll
+                    </a>
+                </li>
                 <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Budget</a></li>
                 <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Reports</a></li>
             </ul>
