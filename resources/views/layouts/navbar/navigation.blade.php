@@ -31,6 +31,13 @@
                         Role
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/user') }}"
+                        class="nav-link text-white d-flex align-items-center px-2 py-1
+                        {{ Request::is('/user') ? 'active bg-white bg-opacity-25' : '' }}">
+                        User
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="nav-item mb-2">

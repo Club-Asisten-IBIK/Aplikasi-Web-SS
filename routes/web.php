@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,8 @@ Route::get('/role', [RoleController::class, 'index'])->name('role.index');
 Route::post('/role', [RoleController::class, 'store'])->name('role.store');
 Route::delete('/role/{roleid}', [RoleController::class, 'destroy'])->name('role.destroy');
 Route::put('/role/{roleid}', [RoleController::class, 'update'])->name('role.update');
+
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::delete('/user/{userid}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::put('/user/{userid}', [UserController::class, 'update'])->name('user.update');
