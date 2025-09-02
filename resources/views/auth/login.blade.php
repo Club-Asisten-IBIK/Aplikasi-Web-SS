@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
+
 <body>
     <div class="container-fluid login-container">
         <div class="row h-100">
@@ -22,7 +24,7 @@
                 <h1 class="school-name">EDU-PRIMA</h1>
                 <h1 class="school-name">Education Primary Management</h1>
             </div>
-            
+
             <!-- Login Section - Right Side -->
             <div class="col-md-7 login-section">
                 <div class="container mb-5">
@@ -31,29 +33,27 @@
                             <h2 class="text-white mb-5 text-center"><b>Admin Login</b></h2>
                             <form class="login-form text-center" method="POST" action="">
                                 @csrf
-                                
+
                                 <div class="input-group mb-5">
                                     <span class="input-group-text bg-white">
                                         <i class="bi bi-person"></i>
                                     </span>
-                                    <input type="email" name="email" class="form-control" 
-                                           placeholder="Email">
+                                    <input type="email" name="email" class="form-control" placeholder="Email">
                                 </div>
-                                
+
                                 @error('email')
                                     <span class="text-white">
                                         <small>{{ $message }}</small>
                                     </span>
                                 @enderror
-                                
+
                                 <div class="input-group mb-5">
                                     <span class="input-group-text bg-white">
                                         <i class="bi bi-lock"></i>
                                     </span>
-                                    <input type="password" name="password" class="form-control" 
-                                           placeholder="Password">
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
                                 </div>
-                                
+
                                 @error('password')
                                     <span class="text-white">
                                         <small>{{ $message }}</small>
@@ -62,7 +62,7 @@
                                 <button type="submit" class="btn login-btn">
                                     Login
                                 </button>
-                                
+
                                 @if (Route::has('password.request'))
                                     <div class="text-center mt-3">
                                         <a class="text-white" href="{{ route('password.request') }}">
@@ -81,4 +81,5 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
