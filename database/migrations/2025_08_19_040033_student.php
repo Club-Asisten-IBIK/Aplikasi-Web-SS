@@ -15,6 +15,8 @@ return new class extends Migration
             $table->bigIncrements('studentid');
             $table->unsignedBigInteger('schoolyearid');
             $table->foreign('schoolyearid')->references('schoolyearid')->on('schoolyear')->onDelete('cascade');
+            $table->unsignedBigInteger('classid');
+            $table->foreign('classid')->references('classid')->on('class')->onDelete('cascade');
             $table->string('name', 50);
             $table->string('place', 50);
             $table->date('birthdate');
