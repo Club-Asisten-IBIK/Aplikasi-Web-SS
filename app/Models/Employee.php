@@ -20,4 +20,13 @@ class Employee extends Model
         'email',
         'address'
     ];
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'employee_id', 'employeeid');
+    }
+
+    public function guardian()
+    {
+        return $this->hasOne(Guardian::class, 'employee_id', 'employeeid');
+    }
 }

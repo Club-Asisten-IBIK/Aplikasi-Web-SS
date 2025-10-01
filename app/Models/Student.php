@@ -24,10 +24,14 @@ class Student extends Model
     ];
     public function parent()
     {
-        return $this->hasOne(\App\Models\ParentModel::class, 'studentid', 'studentid');
+        return $this->hasOne(ParentModel::class, 'studentid', 'studentid');
     }
     public function schoolyear()
     {
-        return $this->belongsTo(\App\Models\SchoolYear::class, 'schoolyearid', 'schoolyearid');
+        return $this->belongsTo(SchoolYear::class, 'schoolyearid', 'schoolyearid');
+    }
+    public function class()
+    {
+        return $this->belongsTo(ClassModel::class, 'classid', 'classid');
     }
 }

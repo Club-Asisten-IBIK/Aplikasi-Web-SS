@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassModel;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\ParentModel;
@@ -11,15 +12,22 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with(['parent', 'schoolyear'])->get();
+        $students = Student::with(['class.guardian', 'parent', 'schoolyear'])->get();
         $schoolyears = SchoolYear::all();
         return view('student-management.student', compact('students', 'schoolyears'));
+    }
+
+    public function create()
+    {
+        $classes = ClassModel::with('guardian')->get();
+        return view('student.create', compact('classes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'schoolyearid' => 'required|integer',
+            'classid' => 'required|integer',
             'name' => 'required|string|max:100',
             'place' => 'nullable|string|max:100',
             'birthdate' => 'nullable|date',
@@ -36,6 +44,7 @@ class StudentController extends Controller
 
         $student = Student::create($request->only([
             'schoolyearid',
+            'classid',
             'name',
             'place',
             'birthdate',
@@ -60,6 +69,7 @@ class StudentController extends Controller
     {
         $request->validate([
             'schoolyearid' => 'required|integer',
+            'classid' => 'required|integer',
             'name' => 'required|string|max:100',
             'place' => 'nullable|string|max:100',
             'birthdate' => 'nullable|date',
@@ -77,6 +87,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($studentid);
         $student->update($request->only([
             'schoolyearid',
+            'classid',
             'name',
             'place',
             'birthdate',
@@ -111,5 +122,18 @@ class StudentController extends Controller
         ParentModel::where('studentid', $studentid)->delete();
         Student::where('studentid', $studentid)->delete();
         return redirect()->route('student.index')->with('deleted', true);
+    }
+
+    public function show($id)
+    {
+        $student = Student::with(['class.guardian', 'parent'])->findOrFail($id);
+        return view('student.show', compact('student'));
+    }
+
+    public function edit($id)
+    {
+        $student = Student::with('parent')->findOrFail($id);
+        $classes = ClassModel::with('guardian')->get();
+        return view('student.edit', compact('student', 'classes'));
     }
 }
