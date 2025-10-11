@@ -1,81 +1,44 @@
-<div class="d-flex flex-column vh-100 bg-danger px-4 py-3 text-white"
-    style="width: 302px; position: fixed; left: 0; top: 0;">
-    <div class="d-flex justify-content-center mb-4">
-        <img src="{{ asset('asset/image.png') }}" alt="Logo" class="img-fluid" style="max-width: 300px;">
-    </div>
-    <ul class="nav flex-column fw-normal">
-        <li class="nav-item mb-2">
-            <a href="{{ url('/dashboard') }}"
-                class="nav-link text-white d-flex align-items-center rounded px-3 py-2
-                {{ Request::is('dashboard') ? 'active bg-white bg-opacity-25' : '' }}">
-                <i class="bi bi-speedometer me-2"></i> Dashboard
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2 dropdown-toggle"
-                data-bs-toggle="collapse" data-bs-target="#userMenu">
-                <i class="bi bi-person-fill me-2"></i> User Management
-            </a>
-            <ul class="collapse list-unstyled ps-4 {{ Request::is('role') ? 'show' : '' }}" id="userMenu">
-                <li>
-                    <a href="{{ url('/role') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('/role') ? 'active bg-white bg-opacity-25' : '' }}">
-                        Role
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/user') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('/user') ? 'active bg-white bg-opacity-25' : '' }}">
-                        User
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/student') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('/student') ? 'active bg-white bg-opacity-25' : '' }}">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2 dropdown-toggle"
-                data-bs-toggle="collapse" data-bs-target="#financeMenu">
-                <i class="bi bi-graph-up me-2"></i> Finance Management
-            </a>
-            <ul class="collapse list-unstyled ps-4 {{ Request::is('employee') ? 'show' : '' }}" id="financeMenu">
-                <li>
-                    <a href="{{ url('/employee') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('employee') ? 'active bg-white bg-opacity-25' : '' }}">
-                        Employee
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/payroll') }}"
-                        class="nav-link text-white d-flex align-items-center px-2 py-1
-                        {{ Request::is('payroll') ? 'active bg-white bg-opacity-25' : '' }}">
-                        Payroll
-                    </a>
-                </li>
-                <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Budget</a></li>
-                <li><a href="#" class="nav-link text-white d-flex align-items-center px-2 py-1">Reports</a></li>
-            </ul>
-        </li>
-        <li class="nav-item mt-4 mb-2">
-            <span class="small text-uppercase opacity-75">Other</span>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2">
-                <i class="bi bi-gear me-2"></i> Settings
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white d-flex align-items-center rounded px-3 py-2">
-                <i class="bi bi-question-circle me-2"></i> Help
-            </a>
-        </li>
-    </ul>
+{{-- TOPBAR (mobile) --}}
+<div class="lg:hidden sticky top-0 z-40 flex h-12 items-center gap-2 border-b border-black/5 bg-white px-3">
+  <button id="hb" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-black/10">
+    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+  <span class="font-semibold">@yield('title','Dashboard')</span>
 </div>
+
+{{-- SIDEBAR --}}
+<aside id="sb"
+  class="fixed inset-y-0 left-0 z-50 flex w-[72px] -translate-x-full flex-col items-center
+         bg-gradient-to-b from-[#E12B2B] via-[#D11C1C] to-[#B50F13]
+         px-1 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-black/40
+         transition-transform duration-300 lg:translate-x-0 lg:fixed lg:h-screen">
+  <span class="pointer-events-none absolute right-0 top-2 bottom-2 w-[2px] rounded bg-white/10"></span>
+
+  <nav class="mt-2 flex flex-col items-center gap-y-10">
+    @php $cls = 'h-5 w-5 text-white/80 transition group-hover:text-white'; @endphp
+
+    <a href="#" class="group nav-btn" data-index="0" title="Dashboard">
+      <i data-lucide="grid" class="{{ $cls }}"></i>
+    </a>
+    <a href="#" class="group nav-btn" data-index="1" title="Chat">
+      <i data-lucide="message-circle" class="{{ $cls }}"></i>
+    </a>
+    <a href="#" class="group nav-btn" data-index="2" title="Billing">
+      <i data-lucide="dollar-sign" class="{{ $cls }}"></i>
+    </a>
+    <a href="#" class="group nav-btn" data-index="3" title="Users">
+      <i data-lucide="users" class="{{ $cls }}"></i>
+    </a>
+    <a href="#" class="group nav-btn" data-index="4" title="Settings">
+      <i data-lucide="settings" class="{{ $cls }}"></i>
+    </a>
+    <a href="#" class="group nav-btn" data-index="5" title="Docs">
+      <i data-lucide="file-text" class="{{ $cls }}"></i>
+    </a>
+  </nav>
+</aside>
+
+{{-- OVERLAY mobile --}}
+<div id="ov" class="fixed inset-0 z-40 hidden bg-black/40 backdrop-blur-[1px] lg:hidden"></div>

@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* === DESIGN TOKENS (pakai di util custom kalau perlu) ===
+   Sidebar red:    #E12B2B → #B50F13
+   BG surface:     #F6F7FB
+   Card border:    #E7EAF0
+   Divider table:  #ECEFF3
+   Tabs track:     #ECEFF3
+   Text title:     #0F172A
+   Primary dark:   #111827
+   Success pill:   bg #E6F7EE | text #0B8A4A
+*/
+
+@layer components {
+  /* Card putih halus */
+  .card-soft {
+    @apply bg-white rounded-2xl border border-[#E7EAF0] shadow-[0_1px_0_rgba(16,24,40,0.04)];
+  }
+  /* Judul besar */
+  .title-xl {
+    @apply text-[22px] font-semibold tracking-tight text-[#0F172A];
+  }
+  /* Tombol gelap */
+  .btn-dark {
+    @apply inline-flex items-center gap-2 rounded-lg bg-[#111827] text-white px-3.5 py-2
+           shadow-[0_1px_0_rgba(16,24,40,0.12)] hover:bg-black/90 transition;
+  }
+  /* Input pill abu */
+  .input-pill {
+    @apply h-10 rounded-full bg-[#F6F7FB] border border-transparent px-4 focus:outline-none
+           focus:ring-2 focus:ring-black/10;
+  }
+  /* Tabs track & trigger */
+  .tabs-track {
+    @apply w-full rounded-full bg-[#ECEFF3] p-1;
+  }
+  .tabs-trigger {
+    @apply rounded-full px-5 py-2 text-[14px] font-medium text-[#6B7280]
+           data-[active=true]:bg-white data-[active=true]:text-[#111827]
+           data-[active=true]:shadow-sm transition;
+  }
+  /* Badge state */
+  .badge-ok   { @apply rounded-full px-2.5 py-0.5 text-xs bg-[#E6F7EE] text-[#0B8A4A]; }
+  .badge-mute { @apply rounded-full px-2.5 py-0.5 text-xs bg-[#EEF0F4] text-[#4B5563]; }
+  /* Tabel */
+  .table-head { @apply text-left text-[#6B7280] text-sm border-b border-[#ECEFF3]; }
+  .table-row  { @apply border-b border-[#ECEFF3] hover:bg-black/[0.02]; }
+}
+
+:root {
+  --color-black: #333333;
+  --color-dark-gray: #666666;
+  --color-white: #ffffff;
+}
