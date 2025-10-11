@@ -67,3 +67,8 @@ Route::post('/school-year', [SchoolYearController::class, 'store'])->name('schoo
 Route::get('/school-year/{id}/edit', [SchoolYearController::class, 'edit'])->name('school-year.edit');
 Route::put('/school-year/{id}', [SchoolYearController::class, 'update'])->name('school-year.update');
 Route::delete('/school-year/{id}', [SchoolYearController::class, 'destroy'])->name('school-year.destroy');
+// routes/web.php
+use App\Http\Controllers\GradeController;
+Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
+// routes/web.php
+Route::post('/grades/batch', [GradeController::class, 'storeBatch'])->name('grades.batch');

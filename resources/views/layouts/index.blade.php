@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>@yield('title', 'Dashboard')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/employee.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/role.css') }}" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <meta charset="UTF-8" />
+  <title>@yield('title', 'Dashboard')</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {{-- (Opsional) CSS lama – kalau bentrok style, matikan saja --}}
+  
+
+  {{-- Tailwind + Vite --}}
+  @vite(['resources/css/app.css','resources/js/app.js'])
+
+  {{-- Lucide Icons harus setelah CSS dan sebelum JS sidebar (pakai defer) --}}
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 
-<body>
-    @include('layouts.navbar.navigation')
+<body class="">
+  {{-- Sidebar (berisi topbar mobile + overlay juga) --}}
+  @include('layouts.navbar.navigation')
 
-    <div class="container-fluid" style="margin-left:150px;">
-        <div class="">
-            @yield('content')
-        </div>
+  {{-- Konten --}}
+  <main class="lg:ml-[76px]">
+    
+    <div class="p-6" style="background-color: #F9FAFB">
+      @yield('content')
     </div>
-    <footer class="footer-pink text-center py-2 mt-4">
-        <small>EDU-PRIMA Education Primary Management<br>Yayasan Sekolah Suci Sutijpto</small>
-    </footer>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    @stack('scripts')
+  </main>
 </body>
-
 </html>
