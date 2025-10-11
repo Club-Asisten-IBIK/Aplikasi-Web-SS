@@ -171,7 +171,7 @@
       <div class="text-xs text-[#64748B]">Pastikan semua siswa sudah dipilih statusnya.</div>
       <button @click="simpan()"
         class="rounded-lg bg-[#0F172A] text-white h-10 px-5 hover:bg-black">
-        Simpan Absensi
+        Simpan Absensii
       </button>
     </div>
   </div>
