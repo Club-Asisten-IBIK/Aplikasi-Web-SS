@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name', 50);
             $table->enum('status', ['father', 'mother', 'other']);
             $table->string('contact', 16);
+            $table->string('occupation', 50)->nullable();
+            $table->enum('education', ['SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3', 'none']);
         });
     }
 

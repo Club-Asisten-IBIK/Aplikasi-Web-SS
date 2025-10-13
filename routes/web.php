@@ -51,8 +51,8 @@ Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'
 Route::put('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
 Route::delete('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');
 
-Route::get('/payroll', [\App\Http\Controllers\PayrollController::class, 'index'])->name('payroll.index');
-Route::post('/payroll', [\App\Http\Controllers\PayrollController::class, 'store'])->name('payroll.store');
+// Route::get('/payroll', [\App\Http\Controllers\PayrollController::class, 'index'])->name('payroll.index');
+// Route::post('/payroll', [\App\Http\Controllers\PayrollController::class, 'store'])->name('payroll.store');
 
 Route::get('/component-salary', [\App\Http\Controllers\ComponentSalaryController::class, 'index'])->name('component-salary.index');
 Route::get('/component-salary/create', [\App\Http\Controllers\ComponentSalaryController::class, 'create'])->name('component-salary.create');
@@ -69,6 +69,7 @@ Route::put('/school-year/{id}', [SchoolYearController::class, 'update'])->name('
 Route::delete('/school-year/{id}', [SchoolYearController::class, 'destroy'])->name('school-year.destroy');
 // routes/web.php
 use App\Http\Controllers\GradeController;
+
 Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
 // routes/web.php
 Route::post('/grades/batch', [GradeController::class, 'storeBatch'])->name('grades.batch');

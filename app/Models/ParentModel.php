@@ -8,10 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class ParentModel extends Model
 {
     use HasFactory;
+
     protected $table = 'parent';
     protected $primaryKey = 'parentid';
     public $timestamps = false;
-    protected $fillable = ['studentid', 'name', 'status', 'contact'];
+
+    protected $fillable = [
+        'studentid',
+        'name',
+        'status',
+        'contact',
+        'occupation',
+        'education',
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class, 'studentid', 'studentid');
