@@ -10,14 +10,14 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassModel::with('guardian')->get();
-        return view('class.index', compact('classes'));
+        $classes = ClassModel::with('guardian, guardian.employee')->get();
+        return view('student-management.class.class', compact('classes'));
     }
 
     public function create()
     {
-        $guardians = Guardian::all();
-        return view('class.create', compact('guardians'));
+        $guardians = Guardian::with('employee')->get();
+        return view('student-management.class.class-edit', compact('guardians'));
     }
 
     public function store(Request $request)
@@ -49,9 +49,9 @@ class ClassController extends Controller
 
     public function edit($id)
     {
-        $class = ClassModel::findOrFail($id);
-        $guardians = Guardian::all();
-        return view('class.edit', compact('class', 'guardians'));
+        $class = ClassModel::with('guardian.employee')->findOrFail($id);
+        $guardians = Guardian::with('employee')->get();
+        return view('user-management.class.class-edit', compact('class', 'guardians'));
     }
 
     public function update(Request $request, $id)

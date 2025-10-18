@@ -11,15 +11,34 @@ class Employee extends Model
     protected $table = 'employee';
     protected $primaryKey = 'employeeid';
     public $timestamps = false;
+
     protected $fillable = [
+        'roleid',
+        'nip',
         'fullname',
         'gender',
         'fronttitle',
         'backtitle',
+        'education',
         'contact',
         'email',
-        'address'
+        'address',
+        'place_of_birth',
+        'birthdate',
+        'photo',
+        'npwp',
+        'marital_status'
     ];
+
+    protected $casts = [
+        'birthdate' => 'date'
+    ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roleid', 'roleid');
+    }
+
     public function teacher()
     {
         return $this->hasOne(Teacher::class, 'employee_id', 'employeeid');

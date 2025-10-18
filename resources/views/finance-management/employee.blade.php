@@ -1,4 +1,4 @@
-@extends('layouts.index')
+{{-- @extends('layouts.index')
 
 @section('title', 'User Management')
 
@@ -309,4 +309,195 @@
             @endif
         </script>
     @endpush
-@endsection
+@endsection --}}
+
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+</head>
+
+<body>
+    <h1>Employee Management</h1>
+
+    @if (session('added'))
+        <p>Employee added successfully</p>
+    @endif
+    @if (session('edited'))
+        <p>Employee updated successfully</p>
+    @endif
+    @if (session('deleted'))
+        <p>Employee deleted successfully</p>
+    @endif
+
+    <button onclick="document.getElementById('addEmployeeForm').style.display='block'">Add New Employee</button>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>NIP</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Education</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($employees as $employee)
+                <tr>
+                    <td>{{ $employee->nip }}</td>
+                    <td>{{ $employee->fronttitle }} {{ $employee->fullname }} {{ $employee->backtitle }}</td>
+                    <td>{{ $employee->role->rolename ?? '-' }}</td>
+                    <td>{{ $employee->education }}</td>
+                    <td>{{ $employee->contact }}</td>
+                    <td>{{ $employee->email }}</td>
+                    <td>{{ $employee->marital_status }}</td>
+                    <td>
+                        <button onclick="editEmployee({{ $employee->employeeid }})">Edit</button>
+                        <button
+                            onclick="if(confirm('Delete this employee?')) deleteEmployee({{ $employee->employeeid }})">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Add Employee Form -->
+    <div id="addEmployeeForm" style="display:none;">
+        <h2>Add New Employee</h2>
+        <form action="{{ route('employee.store') }}" method="POST">
+            @csrf
+            <table>
+                <tr>
+                    <td>Role:</td>
+                    <td>
+                        <select name="roleid" required>
+                            <option value="">Select Role</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->roleid }}">{{ $role->rolename }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>NIP:</td>
+                    <td><input type="text" name="nip" required></td>
+                </tr>
+                <tr>
+                    <td>Full Name:</td>
+                    <td><input type="text" name="fullname" required></td>
+                </tr>
+                <tr>
+                    <td>Front Title:</td>
+                    <td><input type="text" name="fronttitle"></td>
+                </tr>
+                <tr>
+                    <td>Back Title:</td>
+                    <td><input type="text" name="backtitle"></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <select name="gender" required>
+                            <option value="laki-laki">Laki-laki</option>
+                            <option value="perempuan">Perempuan</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Education:</td>
+                    <td>
+                        <select name="education" required>
+                            <option value="SMA">SMA</option>
+                            <option value="D1">D1</option>
+                            <option value="D2">D2</option>
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact:</td>
+                    <td><input type="text" name="contact" required></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <textarea name="address" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Birth Place:</td>
+                    <td><input type="text" name="place_of_birth" required></td>
+                </tr>
+                <tr>
+                    <td>Birth Date:</td>
+                    <td><input type="date" name="birthdate" required></td>
+                </tr>
+                <tr>
+                    <td>NPWP:</td>
+                    <td><input type="text" name="npwp" required></td>
+                </tr>
+                <tr>
+                    <td>Marital Status:</td>
+                    <td>
+                        <select name="marital_status" required>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                    </td>
+                    <td>Photo:</td>
+                    <td><input type="file" name="photo" accept="image/*"></td>
+
+                </tr>
+            </table>
+            <button type="submit">Save</button>
+            <button type="button"
+                onclick="document.getElementById('addEmployeeForm').style.display='none'">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function editEmployee(id) {
+            window.location.href = '/employee/' + id + '/edit';
+        }
+
+        function deleteEmployee(id) {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/employee/' + id;
+
+            var methodInput = document.createElement('input');
+            methodInput.type = 'hidden';
+            methodInput.name = '_method';
+            methodInput.value = 'DELETE';
+
+            var tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = '_token';
+            tokenInput.value = '{{ csrf_token() }}';
+
+            form.appendChild(methodInput);
+            form.appendChild(tokenInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+
+</html>

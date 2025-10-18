@@ -46,10 +46,19 @@ Route::put('/user/{userid}', [UserController::class, 'update'])->name('user.upda
 
 Route::resource('user-role', \App\Http\Controllers\UserRoleController::class);
 
+// Route::get('/student', [\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+// Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+// Route::put('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+// Route::delete('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');
+
+
+// Atau jika ingin didefinisikan satu-persatu:
 Route::get('/student', [\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+Route::get('/student/create', [\App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
 Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
-Route::put('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
-Route::delete('/student/{studentid}', [\App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');
+Route::get('/student/{id}/edit', [\App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
+Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'destroy'])->name('student.destroy');
 
 // Route::get('/payroll', [\App\Http\Controllers\PayrollController::class, 'index'])->name('payroll.index');
 // Route::post('/payroll', [\App\Http\Controllers\PayrollController::class, 'store'])->name('payroll.store');
@@ -73,3 +82,5 @@ use App\Http\Controllers\GradeController;
 Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
 // routes/web.php
 Route::post('/grades/batch', [GradeController::class, 'storeBatch'])->name('grades.batch');
+
+Route::resource('class', \App\Http\Controllers\ClassController::class);

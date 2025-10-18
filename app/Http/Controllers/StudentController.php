@@ -23,7 +23,7 @@ class StudentController extends Controller
     {
         $classes = ClassModel::with('guardian')->get();
         $schoolyears = SchoolYear::all();
-        return view('student.create', compact('classes', 'schoolyears'));
+        return view('student-management.student-create', compact('classes', 'schoolyears'));
     }
 
     public function store(Request $request)
@@ -139,7 +139,7 @@ class StudentController extends Controller
         $student = Student::with('parent', 'physicalRecords')->findOrFail($id);
         $classes = ClassModel::with('guardian')->get();
         $schoolyears = SchoolYear::all();
-        return view('student.edit', compact('student', 'classes', 'schoolyears'));
+        return view('student-management.student-edit', compact('student', 'classes', 'schoolyears'));
     }
 
     public function update(Request $request, $id)

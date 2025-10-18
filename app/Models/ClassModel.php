@@ -9,7 +9,18 @@ class ClassModel extends Model
     protected $table = 'class';
     protected $primaryKey = 'classid';
     public $timestamps = true;
-    protected $guarded = [];
+
+    protected $fillable = [
+        'guardianid',
+        'classname',
+        'gradelevel',
+        'capacity',
+        'isactive'
+    ];
+
+    protected $casts = [
+        'isactive' => 'boolean'
+    ];
 
     public function guardian()
     {
