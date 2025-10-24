@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('componentsalary', function (Blueprint $table) {
             $table->bigIncrements('componentid', 20);
             $table->string('componentname', 50);
+            $table->timestamps();
         });
     }
 

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('billamount');
             $table->date('duedate');
             $table->enum('billstatus', ['paid', 'credit', 'unpaid']);
+            $table->timestamps();
         });
     }
 

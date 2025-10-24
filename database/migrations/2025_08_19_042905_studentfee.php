@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('month', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
             $table->date('studentfeedate');
             $table->double('studentfeeamount');
+            $table->timestamps();
         });
     }
 

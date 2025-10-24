@@ -1,0 +1,26 @@
+GET http://localhost:8000/api/roles
+
+###
+POST http://localhost:8000/api/roles
+Content-Type: application/json
+
+{
+  "name": "Admin",
+  "description": "Administrator role",
+
+}
+
+###
+GET http://localhost:8000/api/employees
+
+###
+GET http://localhost:8000/api/classes
+
+###
+GET http://localhost:8000/api/students
+
+###
+GET http://localhost:8000/api/teachers
+
+###
+GET http://localhost:8000/api/subjects

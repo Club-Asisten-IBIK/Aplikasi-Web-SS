@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('from_age_group', 50);
             $table->date('admitted_date');
             $table->string('admitted_age_group', 50);
+            $table->timestamps();
         });
     }
 

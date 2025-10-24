@@ -12,13 +12,13 @@ class LeavingRecordsController extends Controller
     public function index()
     {
         $leavingRecords = LeavingRecords::with('student')->get();
-        return view('leaving-records.index', compact('leavingRecords'));
+        return view('student-management.leaving-records.index', compact('leavingRecords'));
     }
 
     public function create()
     {
         $students = Student::where('status', '!=', 'graduated')->get();
-        return view('leaving-records.create', compact('students'));
+        return view('student-management.leaving-records.create', compact('students'));
     }
 
     public function store(Request $request)
@@ -49,14 +49,14 @@ class LeavingRecordsController extends Controller
     public function show($id)
     {
         $leavingRecord = LeavingRecords::with('student')->findOrFail($id);
-        return view('leaving-records.show', compact('leavingRecord'));
+        return view('student-management.leaving-records.show', compact('leavingRecord'));
     }
 
     public function edit($id)
     {
         $leavingRecord = LeavingRecords::findOrFail($id);
         $students = Student::all();
-        return view('leaving-records.edit', compact('leavingRecord', 'students'));
+        return view('student-management.leaving-records.edit', compact('leavingRecord', 'students'));
     }
 
     public function update(Request $request, $id)

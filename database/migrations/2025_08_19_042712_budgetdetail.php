@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('qty')->default(1);
             $table->string('pcs', 10);
             $table->string('description', 100)->nullable();
+            $table->timestamps();
         });
     }
 

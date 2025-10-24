@@ -30,10 +30,10 @@
                     <td>{{ $class->classname }}</td>
                     <td>{{ $class->gradelevel }}</td>
                     <td>
-                        {{ $class->guardian->employee->fullname ?? 'Tidak ada wali kelas' }}
+                        {{ $class->teacher->employee->fullname ?? 'Tidak ada wali kelas' }}
                     </td>
                     <td>
-                        {{ $class->guardian->employee->nip ?? '-' }}
+                        {{ $class->teacher->employee->nip ?? '-' }}
                     </td>
                     <td>{{ $class->capacity }}</td>
                     <td>{{ $class->isactive ? 'Aktif' : 'Tidak Aktif' }}</td>

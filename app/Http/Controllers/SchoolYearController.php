@@ -10,12 +10,12 @@ class SchoolYearController extends Controller
     public function index()
     {
         $schoolyears = SchoolYear::all();
-        return view('student-management.school-year', compact('schoolyears'));
+        return view('student-management.year.school-year', compact('schoolyears'));
     }
 
     public function create()
     {
-        return view('student-management.school-year-create');
+        return view('student-management.year.school-year-create');
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class SchoolYearController extends Controller
     public function edit($id)
     {
         $schoolyear = SchoolYear::findOrFail($id);
-        return view('student-management.school-year-edit', compact('schoolyear'));
+        return view('student-management.year.school-year-edit', compact('schoolyear'));
     }
 
     public function update(Request $request, $id)

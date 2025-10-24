@@ -10,10 +10,8 @@ class Employee extends Model
     use HasFactory;
     protected $table = 'employee';
     protected $primaryKey = 'employeeid';
-    public $timestamps = false;
 
     protected $fillable = [
-        'roleid',
         'nip',
         'fullname',
         'gender',
@@ -44,8 +42,8 @@ class Employee extends Model
         return $this->hasOne(Teacher::class, 'employee_id', 'employeeid');
     }
 
-    public function guardian()
+    public function userrole()
     {
-        return $this->hasOne(Guardian::class, 'employee_id', 'employeeid');
+        return $this->hasMany(UserRole::class, 'employeeid', 'employeeid');
     }
 }

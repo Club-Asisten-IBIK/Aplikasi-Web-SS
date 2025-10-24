@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('transfer_date');
             $table->date('exit_date');
             $table->text('reason')->nullable();
+            $table->timestamps();
         });
     }
 

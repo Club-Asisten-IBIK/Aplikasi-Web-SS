@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('revenueamount');
             $table->date('revenue_date');
             $table->string('revenuedescription', 100)->nullable();
+            $table->timestamps();
         });
     }
 

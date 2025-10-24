@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('schoolyear', 10);
             $table->string('desc', 100);
             $table->boolean('is_active');
+            $table->timestamps();
         });
     }
 

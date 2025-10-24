@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassModel;
-use App\Models\Guardian;
+use App\Models\Teacher;
 
 class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassModel::with('guardian, guardian.employee')->get();
+        $classes = ClassModel::with(['teacher', 'teacher.employee'])->get();
         return view('student-management.class.class', compact('classes'));
     }
 
     public function create()
     {
-        $guardians = Guardian::with('employee')->get();
-        return view('student-management.class.class-edit', compact('guardians'));
+        $teachers = Teacher::with('employee')->get();
+        return view('student-management.class.class-edit', compact('teachers'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'guardianid' => 'required|integer',
+            'teacherid' => 'required|integer',
             'classname' => 'required|string|max:100',
             'gradelevel' => 'required|string',
             'capacity' => 'required|integer',
@@ -31,7 +31,7 @@ class ClassController extends Controller
         ]);
 
         ClassModel::create($request->only([
-            'guardianid',
+            'teacherid',
             'classname',
             'gradelevel',
             'capacity',
@@ -43,21 +43,21 @@ class ClassController extends Controller
 
     public function show($id)
     {
-        $class = ClassModel::with('guardian')->findOrFail($id);
+        $class = ClassModel::with('teacher')->findOrFail($id);
         return view('class.show', compact('class'));
     }
 
     public function edit($id)
     {
-        $class = ClassModel::with('guardian.employee')->findOrFail($id);
-        $guardians = Guardian::with('employee')->get();
-        return view('user-management.class.class-edit', compact('class', 'guardians'));
+        $class = ClassModel::with('teacher.employee')->findOrFail($id);
+        $teachers = Teacher::with('employee')->get();
+        return view('student-management.class.class-edit', compact('class', 'teachers'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'guardianid' => 'required|integer',
+            'teacherid' => 'required|integer',
             'classname' => 'required|string|max:100',
             'gradelevel' => 'required|string',
             'capacity' => 'required|integer',
@@ -66,7 +66,7 @@ class ClassController extends Controller
 
         $class = ClassModel::findOrFail($id);
         $class->update($request->only([
-            'guardianid',
+            'teacherid',
             'classname',
             'gradelevel',
             'capacity',

@@ -39,6 +39,13 @@ class Student extends Model
         'contract',
     ];
 
+    protected $casts = [
+        'birthdate' => 'date',
+        'datejoin' => 'date',
+        'studentfeeamount' => 'double',
+        'distance_km' => 'decimal:2'
+    ];
+
     // Relasi ke Parent
     public function parent()
     {

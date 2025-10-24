@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('paymentdate');
             $table->string('receipt', 50);
             $table->enum('paymentmethod', ['cash', 'transfer', 'qris']);
+            $table->timestamps();
         });
     }
 

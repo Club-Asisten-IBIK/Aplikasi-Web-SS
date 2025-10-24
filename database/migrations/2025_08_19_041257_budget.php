@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('proposedate');
             $table->date('approvaldate');
             $table->enum('paymentsatus', ['paid', 'credit', 'unpaid']);
+            $table->timestamps();
         });
     }
 

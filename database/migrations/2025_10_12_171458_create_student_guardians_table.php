@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('family_relation', ['father', 'mother', 'guardian']);
             $table->enum('education', ['SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3', 'none']);
             $table->string('occupation', 100);
+            $table->timestamps();
         });
     }
 

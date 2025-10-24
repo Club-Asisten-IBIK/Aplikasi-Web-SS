@@ -8,7 +8,7 @@ class Teacher extends Model
 {
     protected $table = 'teachers';
     protected $primaryKey = 'teacherid';
-    protected $guarded = [];
+    protected $fillable = ['employee_id', 'subject_id'];
 
     public function employee()
     {

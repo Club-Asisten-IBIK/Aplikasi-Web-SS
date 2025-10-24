@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('componentid')
                 ->references('componentid')->on('componentsalary')
                 ->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

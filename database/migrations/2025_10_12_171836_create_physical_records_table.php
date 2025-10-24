@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('weight_kg', 5, 2);
             $table->enum('blood_type', ['A', 'B', 'AB', 'O']);
             $table->text('medical_history')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -11,7 +11,7 @@ class ClassModel extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'guardianid',
+        'teacherid',
         'classname',
         'gradelevel',
         'capacity',
@@ -22,13 +22,8 @@ class ClassModel extends Model
         'isactive' => 'boolean'
     ];
 
-    public function guardian()
+    public function teacher()
     {
-        return $this->belongsTo(Guardian::class, 'guardianid', 'guardianid');
-    }
-
-    public function students()
-    {
-        return $this->hasMany(Student::class, 'classid', 'classid');
+        return $this->belongsTo(Teacher::class, 'teacherid', 'teacherid');
     }
 }

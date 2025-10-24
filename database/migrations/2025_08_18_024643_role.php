@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('roleid');
             $table->string('rolename', 30);
             $table->boolean('isactive');
+            $table->timestamps();
         });
     }
 

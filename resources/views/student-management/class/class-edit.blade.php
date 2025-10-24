@@ -42,12 +42,12 @@
             <tr>
                 <td>Wali Kelas:</td>
                 <td>
-                    <select name="guardianid" required>
+                    <select name="teacherid" required>
                         <option value="">Pilih Wali Kelas</option>
-                        @foreach ($guardians as $guardian)
-                            <option value="{{ $guardian->guardianid }}"
-                                {{ isset($class) && $class->guardianid == $guardian->guardianid ? 'selected' : '' }}>
-                                {{ $guardian->employee->fullname }} ({{ $guardian->employee->nip }})
+                        @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->teacherid }}"
+                                {{ isset($class) && $class->teacherid == $teacher->teacherid ? 'selected' : '' }}>
+                                {{ $teacher->employee->fullname }} ({{ $teacher->employee->nip }})
                             </option>
                         @endforeach
                     </select>

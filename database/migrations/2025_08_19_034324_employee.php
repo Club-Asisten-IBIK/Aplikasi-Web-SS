@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('employee', function (Blueprint $table) {
             $table->bigIncrements('employeeid', 20);
-            $table->unsignedBigInteger('roleid');
             $table->string('nip', 12);
             $table->string('fullname', 100);
             $table->enum('gender', ['laki-laki', 'perempuan']);
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->string('photo');
             $table->string('npwp', 50);
             $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
+            $table->timestamps();
         });
     }
 

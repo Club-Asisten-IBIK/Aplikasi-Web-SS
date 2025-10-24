@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\ClassController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\SubjectController;
+use App\Http\Controllers\Api\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::controller(RoleController::class)->group(function () {
+    Route::get('/roles', 'index');
+    Route::post('/roles', 'store');
+    Route::put('/roles/{roleid}', 'update');
+    Route::delete('/roles/{roleid}', 'destroy');
+});
+Route::apiResource('employees', EmployeeController::class);
+Route::apiResource('classes', ClassController::class);
+Route::apiResource('students', StudentController::class);
+Route::apiResource('teachers', TeacherController::class);
+Route::apiResource('subjects', SubjectController::class);

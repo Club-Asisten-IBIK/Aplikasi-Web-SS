@@ -23,7 +23,7 @@ class RoleController extends Controller
             )
             ->get();
 
-        return view('user-management.user.role', compact('roles'));
+        return view('user-management.users.role', compact('roles'));
     }
 
     // Simpan role baru dan privilege

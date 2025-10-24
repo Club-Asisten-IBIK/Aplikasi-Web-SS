@@ -26,4 +26,9 @@ class ParentModel extends Model
     {
         return $this->belongsTo(Student::class, 'studentid', 'studentid');
     }
+
+    public function userrole()
+    {
+        return $this->hasMany(UserRole::class, 'parentid', 'parentid');
+    }
 }

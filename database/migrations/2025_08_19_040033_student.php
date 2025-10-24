@@ -37,6 +37,7 @@ return new class extends Migration
             $table->date('datejoin');
             $table->double('studentfeeamount');
             $table->string('contract', 100);
+            $table->timestamps();
         });
     }
 

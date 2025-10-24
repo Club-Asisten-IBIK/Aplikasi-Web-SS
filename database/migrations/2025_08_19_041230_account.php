@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('accountcode', 20)->primary();
             $table->string('name', 50);
             $table->boolean('isactive', 1);
+            $table->timestamps();
         });
     }
 

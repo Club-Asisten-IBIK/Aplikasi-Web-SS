@@ -2,130 +2,167 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Role;
 use App\Models\Employee;
 use App\Models\ParentModel;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
-
-    // public function index()
-    // {
-    //     $students = [
-    //         ['id' => 'STU001', 'name' => 'Emma Johnson', 'class' => 'Grade 10-A', 'dob' => '2008-03-15', 'gender' => 'Female', 'parent' => 'Sarah Johnson', 'contact' => '(555) 123-4567', 'status' => 'Active'],
-    //         ['id' => 'STU002', 'name' => 'Michael Brown', 'class' => 'Grade 9-B', 'dob' => '2009-07-22', 'gender' => 'Male', 'parent' => 'David Brown', 'contact' => '(555) 234-5678', 'status' => 'Active'],
-    //         ['id' => 'STU003', 'name' => 'Sarah Davis', 'class' => 'Grade 11-A', 'dob' => '2007-11-08', 'gender' => 'Female', 'parent' => 'Lisa Davis', 'contact' => '(555) 345-6789', 'status' => 'Inactive'],
-    //     ];
-
-    //     $classes = [
-    //         ['id' => 'CLS001', 'name' => 'Grade 10-A', 'level' => 'Grade 10', 'teacher' => 'John Smith', 'capacity' => 30, 'enrolled' => 28],
-    //         ['id' => 'CLS002', 'name' => 'Grade 9-B', 'level' => 'Grade 9', 'teacher' => 'Mary Wilson', 'capacity' => 25, 'enrolled' => 23],
-    //         ['id' => 'CLS003', 'name' => 'Grade 11-A', 'level' => 'Grade 11', 'teacher' => 'Robert Jones', 'capacity' => 28, 'enrolled' => 26],
-    //     ];
-
-    //     $staff = [
-    //         ['id' => 'STF001', 'name' => 'John Smith', 'position' => 'Teacher', 'subject' => 'Mathematics', 'contact' => '(555) 111-2222', 'status' => 'Active'],
-    //         ['id' => 'STF002', 'name' => 'Mary Wilson', 'position' => 'Teacher', 'subject' => 'English Literature', 'contact' => '(555) 222-3333', 'status' => 'Active'],
-    //         ['id' => 'STF003', 'name' => 'Robert Jones', 'position' => 'Administrator', 'subject' => 'N/A', 'contact' => '(555) 333-4444', 'status' => 'Active'],
-    //     ];
-
-    //     $subjects = [
-    //         ['id' => 'SUB001', 'name' => 'Mathematics', 'teacher' => 'John Smith'],
-    //         ['id' => 'SUB002', 'name' => 'English Literature', 'teacher' => 'Mary Wilson'],
-    //         ['id' => 'SUB003', 'name' => 'Physics', 'teacher' => 'Dr. Anderson'],
-    //         ['id' => 'SUB004', 'name' => 'Chemistry', 'teacher' => 'Prof. Carter'],
-    //     ];
-
-    //     $attendanceData = [
-    //         ['studentName' => 'Emma Johnson', 'class' => 'Grade 10-A', 'totalPresent' => 18, 'totalAbsent' => 2, 'totalExcused' => 1, 'attendanceRate' => '86%'],
-    //         ['studentName' => 'Michael Brown', 'class' => 'Grade 9-B', 'totalPresent' => 20, 'totalAbsent' => 1, 'totalExcused' => 0, 'attendanceRate' => '95%'],
-    //         ['studentName' => 'Sarah Davis', 'class' => 'Grade 11-A', 'totalPresent' => 17, 'totalAbsent' => 3, 'totalExcused' => 1, 'attendanceRate' => '81%'],
-    //     ];
-
-    //     return view('user-management.index', compact('students', 'classes', 'staff', 'subjects', 'attendanceData'));
-    // }
-
     public function index()
     {
-        // Join ke employee dan parent untuk ambil nama
-        $users = DB::table('users')
-            ->leftJoin('employee', 'users.employeeid', '=', 'employee.employeeid')
-            ->leftJoin('parent', 'users.parentid', '=', 'parent.parentid')
-            ->select(
-                'users.*',
-                'employee.fullname as employee_name',
-                'parent.name as parent_name'
-            )
-            ->get();
+        try {
+            $users = DB::table('users')
+                ->join('userrole', 'users.userid', '=', 'userrole.userid')
+                ->leftJoin('employee', 'userrole.employeeid', '=', 'employee.employeeid')
+                ->leftJoin('parent', 'userrole.parentid', '=', 'parent.parentid')
+                ->leftJoin('role', 'userrole.roleid', '=', 'role.roleid')
+                ->select(
+                    'users.userid',
+                    'users.username',
+                    'users.isactive',
+                    'userrole.employeeid',
+                    'userrole.parentid',
+                    'employee.fullname as employee_name',
+                    'parent.name as parent_name',
+                    'role.rolename'
+                )
+                ->get();
 
-        return view('user-management.index', compact('users'));
+            return view('user-management.users.index', compact('users'));
+        } catch (QueryException $e) {
+            return back()->with('error', 'Error fetching users: ' . $e->getMessage());
+        }
     }
 
     public function create()
     {
-        $employees = Employee::all();
-        $parents = ParentModel::all();
-        return view('user-management.create', compact('employees', 'parents'));
+        try {
+            // Remove isactive condition from employee query since column doesn't exist
+            $employees = Employee::all();
+            $parents = ParentModel::all();
+            $roles = Role::where('isactive', 1)->get();
+
+            return view('user-management.users.create', compact('roles', 'employees', 'parents'));
+        } catch (QueryException $e) {
+            return back()->with('error', 'Error loading form: ' . $e->getMessage());
+        }
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'username'    => 'required|string|max:50',
-            'password'    => 'required|string',
-            'isactive'    => 'required|boolean',
-            'employeeid'  => 'nullable|integer|exists:employee,employeeid',
-            'parentid'    => 'nullable|integer|exists:parent,parentid',
+            'username' => 'required|string|max:50|unique:users,username',
+            'password' => 'required|string|min:6',
+            'isactive' => 'required|boolean',
+            'type' => 'required|in:employee,parent',
+            'roles' => 'required|array',
+            'roles.*' => 'exists:role,roleid',
+            // employeeid/parentid validasi opsional
         ]);
 
-        User::create([
-            'username'   => $request->username,
-            'password'   => bcrypt($request->password),
-            'isactive'   => $request->isactive,
-            'employeeid' => $request->employeeid,
-            'parentid'   => $request->parentid,
-        ]);
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'username' => $request->username,
+                'password' => bcrypt($request->password),
+                'isactive' => $request->isactive,
+            ]);
 
-        return redirect()->route('user.index')->with('added', true);
+            foreach ($request->roles as $roleid) {
+                DB::table('userrole')->insert([
+                    'userid' => $user->userid,
+                    'roleid' => $roleid,
+                    'employeeid' => $request->type == 'employee' ? $request->employeeid : null,
+                    'parentid' => $request->type == 'parent' ? $request->parentid : null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'User created successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $employees = Employee::all();
-        $parents = ParentModel::all();
-        return view('user-management.edit', compact('user', 'employees', 'parents'));
+        try {
+            $user = User::with(['roles'])->findOrFail($id);
+            $roles = Role::where('isactive', 1)->get();
+            $employees = Employee::where('isactive', 1)->get();
+            $parents = ParentModel::all();
+
+            return view('user-management.users.edit', compact('user', 'roles', 'employees', 'parents'));
+        } catch (QueryException $e) {
+            return back()->with('error', 'Error loading user: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username'    => 'required|string|max:50',
-            'isactive'    => 'required|boolean',
-            'employeeid'  => 'nullable|integer|exists:employee,employeeid',
-            'parentid'    => 'nullable|integer|exists:parent,parentid',
+            'username' => 'required|string|max:50|unique:users,username,' . $id . ',userid',
+            'password' => 'nullable|string|min:6',
+            'isactive' => 'required|boolean',
+            'type' => 'required|in:employee,parent',
+            'employeeid' => 'required_if:type,employee|nullable|exists:employee,employeeid',
+            'parentid' => 'required_if:type,parent|nullable|exists:parent,parentid',
+            'roles' => 'required|array|exists:role,roleid'
         ]);
 
-        $user = User::findOrFail($id);
-        $updateData = [
-            'username'   => $request->username,
-            'isactive'   => $request->isactive,
-            'employeeid' => $request->employeeid,
-            'parentid'   => $request->parentid,
-        ];
-        if ($request->filled('password')) {
-            $updateData['password'] = bcrypt($request->password);
-        }
-        $user->update($updateData);
+        try {
+            DB::beginTransaction();
 
-        return redirect()->route('user.index')->with('edited', true);
+            $user = User::findOrFail($id);
+
+            $updateData = [
+                'username' => $request->username,
+                'isactive' => $request->isactive,
+                'employeeid' => $request->type === 'employee' ? $request->employeeid : null,
+                'parentid' => $request->type === 'parent' ? $request->parentid : null,
+            ];
+
+            if ($request->filled('password')) {
+                $updateData['password'] = Hash::make($request->password);
+            }
+
+            $user->update($updateData);
+
+            // Sync roles
+            $user->roles()->sync($request->roles);
+
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'User updated successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withInput()->with('error', 'Error updating user: ' . $e->getMessage());
+        }
     }
 
     public function destroy($id)
     {
-        User::where('userid', $id)->delete();
-        return redirect()->route('user.index')->with('deleted', true);
+        try {
+            DB::beginTransaction();
+
+            $user = User::findOrFail($id);
+            // Detach all roles first
+            $user->roles()->detach();
+            // Then delete the user
+            $user->delete();
+
+            DB::commit();
+            return redirect()->route('user.index')->with('success', 'User deleted successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'Error deleting user: ' . $e->getMessage());
+        }
     }
 }
