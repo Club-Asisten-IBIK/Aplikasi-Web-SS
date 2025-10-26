@@ -10,12 +10,16 @@ class ClassController extends Controller
 {
     public function index()
     {
-        return ClassModel::with(['teacher', 'teacher.employee'])->get();
+        $classes = ClassModel::with(['teacher', 'teacher.employee'])->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $classes
+        ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'teacherid' => 'required|integer',
             'classname' => 'required|string|max:100',
             'gradelevel' => 'required|string',
@@ -23,15 +27,13 @@ class ClassController extends Controller
             'isactive' => 'required|boolean',
         ]);
 
-        $class = ClassModel::create($request->only([
-            'teacherid',
-            'classname',
-            'gradelevel',
-            'capacity',
-            'isactive'
-        ]));
+        $class = ClassModel::create($validated);
 
-        return response()->json($class, 201);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Class created successfully',
+            'data' => $class
+        ], 201);
     }
 
     public function show($id)
@@ -66,6 +68,10 @@ class ClassController extends Controller
     {
         $class = ClassModel::findOrFail($id);
         $class->delete();
-        return response()->json(null, 204);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Class deleted successfully'
+        ]);
     }
 }

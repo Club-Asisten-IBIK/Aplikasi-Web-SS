@@ -24,13 +24,19 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'employee_id' => 'required|integer',
-            'subject_id' => 'required|integer',
-        ]);
+        try {
+            $request->validate([
+                'employee_id' => 'required|integer|exists:employee,employeeid',
+                'subject_id' => 'required|integer|exists:subject,subjectid',
+            ]);
 
-        Teacher::create($request->only(['employee_id', 'subject_id']));
-        return redirect()->route('teacher.index')->with('added', true);
+            Teacher::create($request->only(['employee_id', 'subject_id']));
+            return redirect()->route('teacher.index')->with('success', 'Teacher created successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Failed to create teacher: ' . $e->getMessage());
+        }
     }
 
     public function edit($id)

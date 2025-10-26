@@ -197,10 +197,10 @@
         </p>
 
         <hr>
-        <h3>Data Orang Tua / Wali (maks 2)</h3>
+        <h3>Data Orang Tua / Wali</h3>
 
         <div>
-            <h4>Orang Tua 1</h4>
+            <h4>Orang Tua </h4>
             <p>
                 <label for="parents_0_name">Nama</label><br>
                 <input type="text" id="parents_0_name" name="parents[0][name]"
@@ -242,7 +242,7 @@
             </p>
         </div>
 
-        <div>
+        {{-- <div>
             <h4>Orang Tua 2</h4>
             <p>
                 <label for="parents_1_name">Nama</label><br>
@@ -278,7 +278,7 @@
                     @endforeach
                 </select>
                 </p>
-        </div>
+        </div> --}}
         <hr>
         <h3>Catatan Fisik & Kesehatan</h3>
         <p>

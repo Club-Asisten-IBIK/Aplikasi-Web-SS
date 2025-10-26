@@ -10,18 +10,41 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return Teacher::with(['employee', 'subject'])->get();
+        try {
+            $teachers = Teacher::with(['employee', 'subject'])->get();
+            return response()->json([
+                'status' => 'success',
+                'data' => $teachers
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'employee_id' => 'required|integer',
-            'subject_id' => 'required|integer',
-        ]);
+        try {
+            $validated = $request->validate([
+                'employee_id' => 'required|integer|exists:employee,employeeid',
+                'subject_id' => 'required|integer|exists:subject,subjectid',
+            ]);
 
-        $teacher = Teacher::create($request->only(['employee_id', 'subject_id']));
-        return response()->json($teacher, 201);
+            $teacher = Teacher::create($validated);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Teacher created successfully',
+                'data' => $teacher->load(['employee', 'subject'])
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function show($id)

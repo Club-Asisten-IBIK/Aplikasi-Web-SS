@@ -23,35 +23,45 @@ class RoleController extends Controller
             )
             ->get();
 
-        return view('user-management.users.role', compact('roles'));
+        return view('user-management.role.index', compact('roles'));
     }
 
     // Simpan role baru dan privilege
 
     public function store(Request $request)
     {
-        // Validasi
-        $request->validate([
-            'rolename' => 'required|string|max:30',
-            'isactive' => 'required|boolean',
-        ]);
+        try {
+            // Validasi
+            $validated = $request->validate([
+                'rolename' => 'required|string|max:30',
+                'isactive' => 'required|boolean',
+            ]);
 
-        // Insert ke tabel role
-        $roleid = DB::table('role')->insertGetId([
-            'rolename' => $request->rolename,
-            'isactive' => $request->isactive,
-        ]);
+            DB::beginTransaction();
 
-        // Insert ke tabel rolepreviledge
-        DB::table('rolepreviledge')->insert([
-            'roleid' => $roleid,
-            'read'   => $request->has('read') ? 1 : 0,
-            'create' => $request->has('create') ? 1 : 0,
-            'modify' => $request->has('modify') ? 1 : 0,
-            'delete' => $request->has('delete') ? 1 : 0,
-        ]);
+            // Insert ke tabel role
+            $roleid = DB::table('role')->insertGetId([
+                'rolename' => $validated['rolename'],
+                'isactive' => $validated['isactive'],
+            ]);
 
-        return redirect()->route('role.index')->with('success', 'Role berhasil ditambahkan');
+            // Insert ke tabel rolepreviledge
+            DB::table('rolepreviledge')->insert([
+                'roleid' => $roleid,
+                'read'   => $request->has('read') ? 1 : 0,
+                'create' => $request->has('create') ? 1 : 0,
+                'modify' => $request->has('modify') ? 1 : 0,
+                'delete' => $request->has('delete') ? 1 : 0,
+            ]);
+
+            DB::commit();
+            return redirect()->route('role.index')->with('success', 'Role berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
     public function destroy($roleid)
     {

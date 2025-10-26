@@ -14,15 +14,25 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with([
-            'schoolyear',
-            'class',
-            'class.teacher.employee',
-            'parent',
-            'physicalRecords'
-        ])->get();
+        try {
+            $students = Student::with([
+                'schoolyear',
+                'class',
+                'class.teacher.employee',
+                'parent',
+                'physicalRecords'
+            ])->get();
 
-        return response()->json($students);
+            return response()->json([
+                'status' => 'success',
+                'data' => $students
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function store(Request $request)
@@ -110,10 +120,17 @@ class StudentController extends Controller
             }
 
             DB::commit();
-            return response()->json($student, 201);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Student created successfully',
+                'data' => $student
+            ], 201);
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 

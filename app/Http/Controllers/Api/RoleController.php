@@ -26,7 +26,10 @@ class RoleController extends Controller
                 )
                 ->get();
 
-            return response()->json($roles);
+            return response()->json([
+                'status' => 'success',
+                'data' => $roles
+            ]);
         } catch (QueryException $e) {
             return response()->json(['error' => 'Failed to retrieve roles: ' . $e->getMessage()], 500);
         }
@@ -100,6 +103,33 @@ class RoleController extends Controller
             return response()->json(['message' => 'Role berhasil diperbarui'], 200);
         } catch (QueryException $e) {
             return response()->json(['error' => 'Failed to update role: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $role = DB::table('role')
+                ->leftJoin('rolepreviledge', 'role.roleid', '=', 'rolepreviledge.roleid')
+                ->where('role.roleid', $id)
+                ->first();
+
+            if (!$role) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Role not found'
+                ], 404);
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $role
+            ]);
+        } catch (QueryException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to retrieve role: ' . $e->getMessage()
+            ], 500);
         }
     }
 }

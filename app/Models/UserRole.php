@@ -10,13 +10,15 @@ class UserRole extends Model
     use HasFactory;
 
     protected $table = 'userrole';
-    protected $primaryKey = null;
+    protected $primaryKey = 'userroleid';
     public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
         'userid',
-        'roleid'
+        'roleid',
+        'employeeid',
+        'parentid',
     ];
 
     public function user()

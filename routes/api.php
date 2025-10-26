@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Api\ClassController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\LoginMobileController;
+use App\Http\Controllers\Api\ProfileMobileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,14 +28,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(RoleController::class)->group(function () {
-    Route::get('/roles', 'index');
-    Route::post('/roles', 'store');
-    Route::put('/roles/{roleid}', 'update');
-    Route::delete('/roles/{roleid}', 'destroy');
-});
+Route::apiResource('roles', RoleController::class);
 Route::apiResource('employees', EmployeeController::class);
 Route::apiResource('classes', ClassController::class);
-Route::apiResource('students', StudentController::class);
 Route::apiResource('teachers', TeacherController::class);
 Route::apiResource('subjects', SubjectController::class);
+Route::apiResource('users', UserController::class);
+Route::apiResource('userroles', UserRoleController::class);
+Route::prefix('students')->group(function () {
+    Route::apiResource('/', StudentController::class);
+    Route::post('{student}/parents', [StudentController::class, 'storeParent']);
+    Route::put('parents/{id}', [StudentController::class, 'updateParent']);
+    Route::delete('parents/{id}', [StudentController::class, 'destroyParent']);
+    Route::post('{student}/physical', [StudentController::class, 'storePhysical']);
+    Route::put('physical/{id}', [StudentController::class, 'updatePhysical']);
+    Route::delete('physical/{id}', [StudentController::class, 'destroyPhysical']);
+});
+Route::get('profile/{studentId}', [ProfileMobileController::class, 'getProfile']);
+Route::post('login', [LoginMobileController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [LoginMobileController::class, 'logout']);

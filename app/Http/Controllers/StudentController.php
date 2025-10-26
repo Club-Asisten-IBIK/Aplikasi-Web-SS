@@ -11,11 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+
 
 class StudentController extends Controller
 {
-    // LIST STUDENTS
     public function index()
     {
         try {
@@ -33,7 +32,7 @@ class StudentController extends Controller
         }
     }
 
-    // SHOW CREATE FORM
+
     public function create()
     {
         try {
@@ -45,7 +44,7 @@ class StudentController extends Controller
         }
     }
 
-    // STORE STUDENT (+ optional parents and physical record)
+
     public function store(Request $request)
     {
         $request->validate([
@@ -66,7 +65,6 @@ class StudentController extends Controller
             'address' => 'required|string',
             'living_with' => 'nullable|in:Orang Tua,Wali,Keluarga Lain',
             'distance_km' => 'nullable|numeric',
-            // photo can be uploaded file; controller will save file and store path as string
             'photo' => 'nullable|file|image|max:2048',
             'status' => 'required|in:prostudent,student,graduated',
             'datejoin' => 'required|date',
@@ -94,25 +92,21 @@ class StudentController extends Controller
                 'contract'
             ]);
 
-            // handle photo upload -> store path string in DB
             if ($request->hasFile('photo')) {
                 $file = $request->file('photo');
                 $filename = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME))
                     . '-' . time() . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('students', $filename, 'public'); // saved to storage/app/public/students
-                $input['photo'] = $path; // string path stored in DB
+                $input['photo'] = $path;
             } elseif ($request->filled('photo')) {
-                // if user sends a string path/url instead of file
                 $input['photo'] = $request->input('photo');
             }
 
             $student = Student::create($input);
 
-            // optional parents (array of parents)
             if ($request->has('parents') && is_array($request->parents)) {
                 foreach ($request->parents as $p) {
                     $pdata = array_merge($p, ['studentid' => $student->studentid]);
-                    // minimal validation for each parent entry
                     if (!empty($pdata['name'])) {
                         ParentModel::create([
                             'studentid' => $student->studentid,
@@ -126,7 +120,6 @@ class StudentController extends Controller
                 }
             }
 
-            // optional physical record
             if ($request->filled('height_cm') || $request->filled('weight_kg') || $request->filled('blood_type') || $request->filled('medical_history')) {
                 Physical_Records::create([
                     'studentid' => $student->studentid,
@@ -145,7 +138,6 @@ class StudentController extends Controller
         }
     }
 
-    // SHOW EDIT FORM
     public function edit($id)
     {
         try {
@@ -158,7 +150,6 @@ class StudentController extends Controller
         }
     }
 
-    // UPDATE STUDENT (+ replace parents and update/create physical)
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -199,7 +190,6 @@ class StudentController extends Controller
                 'contract'
             ]);
 
-            // handle photo upload or string
             if ($request->hasFile('photo')) {
                 $file = $request->file('photo');
                 $filename = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME))
@@ -212,7 +202,6 @@ class StudentController extends Controller
 
             $student->update($input);
 
-            // replace parents if provided
             if ($request->has('parents') && is_array($request->parents)) {
                 ParentModel::where('studentid', $student->studentid)->delete();
                 foreach ($request->parents as $p) {
@@ -229,7 +218,6 @@ class StudentController extends Controller
                 }
             }
 
-            // update or create physical record
             if ($request->filled('height_cm') || $request->filled('weight_kg') || $request->filled('blood_type') || $request->filled('medical_history')) {
                 $phys = Physical_Records::where('studentid', $student->studentid)->first();
                 $physData = [
@@ -254,7 +242,7 @@ class StudentController extends Controller
         }
     }
 
-    // DELETE STUDENT + related parents & physical records
+
     public function destroy($id)
     {
         DB::beginTransaction();
@@ -270,7 +258,6 @@ class StudentController extends Controller
         }
     }
 
-    // Additional endpoints to manage parents individually (optional)
     public function storeParent(Request $request)
     {
         $request->validate([
@@ -311,7 +298,7 @@ class StudentController extends Controller
         }
     }
 
-    // Additional endpoints to manage physical records individually (optional)
+
     public function storePhysical(Request $request)
     {
         $request->validate([

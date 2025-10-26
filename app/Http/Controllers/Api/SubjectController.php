@@ -12,7 +12,18 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        return Subject::with('teachers.employee')->get();
+        try {
+            $subjects = Subject::with('teachers.employee')->get();
+            return response()->json([
+                'status' => 'success',
+                'data' => $subjects
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function store(Request $request)
@@ -43,17 +54,34 @@ class SubjectController extends Controller
             }
 
             DB::commit();
-            return response()->json($subject->load('teachers.employee'), 201);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Subject created successfully',
+                'data' => $subject->load('teachers.employee')
+            ], 201);
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['error' => 'Terjadi kesalahan saat menyimpan data.'], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 
     public function show($id)
     {
-        $subject = Subject::with('teachers.employee')->findOrFail($id);
-        return response()->json($subject);
+        try {
+            $subject = Subject::with('teachers.employee')->findOrFail($id);
+            return response()->json([
+                'status' => 'success',
+                'data' => $subject
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 404);
+        }
     }
 
     public function update(Request $request, $id)

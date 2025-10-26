@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return view('user-management.users.index', compact('users'));
+        return response()->json([
+            'status' => 'success',
+            'data' => $users
+        ]);
     }
-
-    public function create()
-    {
-        return view('user-management.users.create');
-    }
-
 
     public function store(Request $request)
     {
@@ -29,16 +26,22 @@ class UserController extends Controller
         ]);
 
         $validated['password'] = bcrypt($validated['password']);
-
         $user = User::create($validated);
 
-        return redirect()->route('user.index')->with('success', 'User created successfully');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User created successfully',
+            'data' => $user
+        ], 201);
     }
 
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return response()->json($user);
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -57,14 +60,21 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('user.index')->with('success', 'User updated successfully');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User updated successfully',
+            'data' => $user
+        ]);
     }
 
     public function destroy($id)
     {
-
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'User deleted successfully');
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User deleted successfully'
+        ]);
     }
 }

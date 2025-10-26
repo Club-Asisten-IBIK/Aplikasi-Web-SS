@@ -9,7 +9,7 @@ class ParentModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'parent';
+    protected $table = 'parents';
     protected $primaryKey = 'parentid';
     public $timestamps = false;
 

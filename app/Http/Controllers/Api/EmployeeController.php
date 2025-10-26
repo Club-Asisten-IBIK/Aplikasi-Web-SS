@@ -11,7 +11,11 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return Employee::orderBy('employeeid', 'desc')->get();
+        $employees = Employee::orderBy('employeeid', 'desc')->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $employees
+        ]);
     }
 
     public function store(Request $request)
@@ -34,13 +38,21 @@ class EmployeeController extends Controller
         ]);
 
         $employee = Employee::create($request->all());
-        return response()->json($employee, 201);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee created successfully',
+            'data' => $employee
+        ], 201);
     }
 
     public function show($id)
     {
         $employee = Employee::findOrFail($id);
-        return response()->json($employee);
+        return response()->json([
+            'status' => 'success',
+            'data' => $employee
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -65,13 +77,22 @@ class EmployeeController extends Controller
         ]);
 
         $employee->update($request->all());
-        return response()->json($employee);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee updated successfully',
+            'data' => $employee
+        ]);
     }
 
     public function destroy($id)
     {
         $employee = Employee::findOrFail($id);
         $employee->delete();
-        return response()->json(null, 204);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Employee deleted successfully'
+        ]);
     }
 }

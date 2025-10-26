@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('userrole', function (Blueprint $table) {
+            $table->bigIncrements('userroleid');
             $table->unsignedBigInteger('userid');
-            $table->unsignedBigInteger('roleid');
-            $table->unsignedBigInteger('employeeid');
-            $table->unsignedBigInteger('parentid');
-            $table->primary(['userid', 'roleid']);
+            $table->unsignedBigInteger('roleid')->nullable();
+            $table->unsignedBigInteger('employeeid')->nullable();
+            $table->unsignedBigInteger('parentid')->nullable();
             $table->timestamps();
         });
     }

@@ -2,84 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserRole;
+use App\Models\Employee;
+use App\Models\ParentModel;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserRoleController extends Controller
 {
-    // Tampilkan semua user beserta nama role-nya
     public function index()
     {
-        $userRoles = DB::table('users')
-            ->join('userrole', 'users.userid', '=', 'userrole.userid')
-            ->join('role', 'userrole.roleid', '=', 'role.roleid')
-            ->select(
-                'users.userid',
-                'users.username',
-                'users.isactive',
-                'role.roleid',
-                'role.rolename'
-            )
-            ->get();
-
-        // Untuk dropdown user dan role (jika ingin tambah/edit)
-        $users = DB::table('users')->get();
-        $roles = DB::table('role')->where('isactive', 1)->get();
-
-        return view('user-management.user-role', compact('userRoles', 'users', 'roles'));
+        // Ambil semua userrole beserta nama employee dan parent
+        $userRoles = UserRole::with(['employee', 'parent'])->get();
+        return view('user-management.userrole.index', compact('userRoles'));
     }
 
-    // Form tambah user-role
     public function create()
     {
-        $users = DB::table('users')->get();
-        $roles = DB::table('role')->where('isactive', 1)->get();
-        return view('user-management.user-role-create', compact('users', 'roles'));
+        $data = [
+            'users' => User::orderBy('username')->pluck('username', 'userid'),
+            'roles' => Role::orderBy('rolename')->pluck('rolename', 'roleid'),
+            'employees' => Employee::orderBy('fullname')->pluck('fullname', 'employeeid'),
+            'parents' => ParentModel::orderBy('name')->pluck('name', 'parentid'),
+        ];
+        return view('user-management.userrole.create', compact('data'));
     }
 
-    // Simpan user-role baru
     public function store(Request $request)
     {
-        $request->validate([
-            'userid' => 'required|integer|exists:users,userid',
-            'roleid' => 'required|integer|exists:role,roleid',
+        $validated = $request->validate([
+            'userid' => 'required|exists:users,userid',
+            'roleid' => 'nullable|exists:role,roleid',
+            'employeeid' => 'nullable|exists:employee,employeeid',
+            'parentid' => 'nullable|exists:parents,parentid',
         ]);
 
-        DB::table('userrole')->insert([
-            'userid' => $request->userid,
-            'roleid' => $request->roleid,
-        ]);
+        UserRole::create($validated);
 
-        return redirect()->route('user-role.index')->with('success', 'User Role berhasil ditambahkan.');
+        return redirect()->route('userrole.index')->with('success', 'UserRole berhasil ditambahkan.');
     }
 
-    // Form edit user-role
-    public function edit($userid)
+    public function edit($id)
     {
-        $userRole = DB::table('userrole')->where('userid', $userid)->first();
-        $users = DB::table('users')->get();
-        $roles = DB::table('role')->where('isactive', 1)->get();
-        return view('user-management.user-role-edit', compact('userRole', 'users', 'roles'));
+        // $id bisa berupa array ['userid', 'roleid'] jika pakai composite key
+        $userRole = UserRole::findOrFail($id);
+        $employees = Employee::all();
+        $parents = ParentModel::all();
+        return view('user-management.userrole.edit', compact('userRole', 'employees', 'parents'));
     }
 
-    // Update user-role
-    public function update(Request $request, $userid)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'roleid' => 'required|integer|exists:role,roleid',
+        $userRole = UserRole::findOrFail($id);
+
+        $validated = $request->validate([
+            'employeeid' => 'required|integer|exists:employee,employeeid',
+            'parentid' => 'required|integer|exists:parents,parentid',
         ]);
 
-        DB::table('userrole')->where('userid', $userid)->update([
-            'roleid' => $request->roleid,
-        ]);
+        $userRole->update($validated);
 
-        return redirect()->route('user-role.index')->with('success', 'User Role berhasil diupdate.');
+        return redirect()->route('userrole.index')->with('success', 'UserRole berhasil diupdate.');
     }
 
-    // Hapus user-role
-    public function destroy($userid)
+    public function destroy($id)
     {
-        DB::table('userrole')->where('userid', $userid)->delete();
-        return redirect()->route('user-role.index')->with('success', 'User Role berhasil dihapus.');
+        $userRole = UserRole::findOrFail($id);
+        $userRole->delete();
+
+        return redirect()->route('userrole.index')->with('success', 'UserRole berhasil dihapus.');
     }
 }

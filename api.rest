@@ -1,16 +1,6 @@
 GET http://localhost:8000/api/roles
 
 ###
-POST http://localhost:8000/api/roles
-Content-Type: application/json
-
-{
-  "name": "Admin",
-  "description": "Administrator role",
-
-}
-
-###
 GET http://localhost:8000/api/employees
 
 ###
@@ -24,3 +14,22 @@ GET http://localhost:8000/api/teachers
 
 ###
 GET http://localhost:8000/api/subjects
+
+###
+GET http://localhost:8000/api/users
+
+###
+GET http://localhost:8000/api/userroles
+
+###
+GET http://localhost:8000/api/profile/2
+
+###
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "username": "P00123456",
+  "password": "P00123456",
+  "status": "Aktif"
+}
