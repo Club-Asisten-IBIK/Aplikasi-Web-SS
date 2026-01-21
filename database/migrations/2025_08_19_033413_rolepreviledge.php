@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('rolepreviledge', function (Blueprint $table) {
             $table->bigIncrements('rolepreviledgeid');
-            $table->unsignedBigInteger('roleid');
-            $table->foreign('roleid')->references('roleid')->on('role')->onDelete('cascade');
-            $table->boolean('read');
-            $table->boolean('create');
-            $table->boolean('modify');
-            $table->boolean('delete');
+            $table->unsignedBigInteger('roleid')->nullable();
+            $table->foreign('roleid')->references('roleid')->on('role')->onDelete('cascade')->nullable();
+            $table->boolean('read')->nullable();
+            $table->boolean('create')->nullable();
+            $table->boolean('modify')->nullable();
+            $table->boolean('delete')->nullable();
             $table->timestamps();
         });
     }

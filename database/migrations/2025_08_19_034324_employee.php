@@ -12,21 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employee', function (Blueprint $table) {
-            $table->bigIncrements('employeeid', 20);
-            $table->string('nip', 12);
-            $table->string('fullname', 100);
-            $table->enum('gender', ['laki-laki', 'perempuan']);
-            $table->string('fronttitle', 20);
-            $table->string('backtitle', 20);
-            $table->enum('education', ['SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3']);
-            $table->string('contact', 16);
-            $table->string('email', 100);
-            $table->string('address', 255);
-            $table->string('place_of_birth', 50);
-            $table->date('birthdate');
-            $table->string('photo');
-            $table->string('npwp', 50);
-            $table->enum('marital_status', ['single', 'married', 'divorced', 'widowed']);
+            $table->bigIncrements('employeeid');
+            $table->string('nip', 12)->nullable();
+            $table->string('nik', 20)->nullable();
+            $table->string('nama_lengkap', 100)->nullable();
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
+            $table->string('gelar_depan', 20)->nullable();
+            $table->string('gelar_belakang', 20)->nullable();
+            $table->enum('pendidikan', ['SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->string('kontak', 16)->nullable();
+            $table->string('email', 16)->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('tempat_lahir', 50)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('foto', 255)->nullable();
+            $table->string('npwp', 50)->nullable();
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu', 'lainnya'])->nullable();
+            $table->enum('status_perkawinan', ['belum kawin', 'kawin', 'cerai hidup', 'cerai mati'])->nullable();
+            $table->date('tanggal_masuk')->nullable();
             $table->timestamps();
         });
     }

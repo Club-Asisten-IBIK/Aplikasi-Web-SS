@@ -12,14 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('parents', function (Blueprint $table) {
-            $table->bigIncrements('parentid');
-            $table->unsignedBigInteger('studentid');
-            $table->foreign('studentid')->references('studentid')->on('student')->onDelete('cascade');
-            $table->string('name', 50);
-            $table->enum('status', ['father', 'mother', 'other']);
-            $table->string('contact', 16);
-            $table->string('occupation', 50)->nullable();
-            $table->enum('education', ['SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3', 'none']);
+            $table->id();
+            // Relasi ke tabel student
+            $table->foreignId('siswa_id')->constrained('student')->cascadeOnDelete();
+
+            // Data Ayah
+            $table->string('nama_ayah', 50)->nullable();
+            $table->enum('pendidikan_ayah', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->string('pekerjaan_ayah', 100)->nullable();
+
+            // Data Ibu
+            $table->string('nama_ibu', 50)->nullable();
+            $table->enum('pendidikan_ibu', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->string('pekerjaan_ibu', 100)->nullable();
+
             $table->timestamps();
         });
     }
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parent');
+        Schema::dropIfExists('parents');
     }
 };

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -32,20 +31,6 @@ class LoginMobileController extends Controller
                 ]);
             }
 
-            // Get user role with parent relationship
-            $userRole = UserRole::with('parent')
-                ->where('userid', $user->userid)
-                ->whereNotNull('parentid')
-                ->first();
-
-            // Check if user is a parent
-            if (!$userRole || !$userRole->parent) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'User is not authorized as parent'
-                ], 403);
-            }
-
             // Create token for mobile app
             $token = $user->createToken('mobile-app')->plainTextToken;
 
@@ -58,11 +43,6 @@ class LoginMobileController extends Controller
                         'userid' => $user->userid,
                         'username' => $user->username,
                     ],
-                    'parent' => [
-                        'parentid' => $userRole->parent->parentid,
-                        'name' => $userRole->parent->name,
-                        'status' => $userRole->parent->status,
-                    ]
                 ]
             ]);
         } catch (ValidationException $e) {

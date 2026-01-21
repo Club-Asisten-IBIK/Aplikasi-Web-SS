@@ -11,20 +11,20 @@ class Educational_Histories extends Model
     use HasFactory;
 
     protected $table = 'educational__histories';
-    protected $primaryKey = 'educational_historyid';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'studentid',
-        'institution_name',
-        'institution_address',
-        'from_age_group',
-        'admitted_date',
-        'admitted_age_group',
+        'siswa_id',
+        'jenis_masuk',
+        'nama_instansi',
+        'alamat_instansi',
+        'usia_saat_masuk',
+        'tanggal_diterima',
+        'kelompok_usia',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'studentid', 'studentid');
+        return $this->belongsTo(Student::class, 'siswa_id', 'id');
     }
 }

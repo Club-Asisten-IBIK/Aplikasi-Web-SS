@@ -10,24 +10,28 @@ class LeavingRecords extends Model
     use HasFactory;
 
     protected $table = 'leaving_records';
-    protected $primaryKey = 'leaving_recordid';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'studentid',
-        'entry_type',
-        'letter_type',
-        'continues_to_institution',
-        'from_age_group',
-        'destination_institution',
-        'destination_age_group_level',
-        'transfer_date',
-        'exit_date',
-        'reason'
+        'siswa_id',
+        'jenis_keluar',
+        'nomor_surat',
+        'melanjutkan_ke',
+        'asal_kelompok',
+        'tujuan_instansi',
+        'kelompok_tujuan',
+        'tanggal_pindah',
+        'tanggal_keluar',
+        'alasan',
+    ];
+
+    protected $casts = [
+        'tanggal_pindah' => 'date',
+        'tanggal_keluar' => 'date',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'studentid', 'studentid');
+        return $this->belongsTo(Student::class, 'siswa_id', 'id');
     }
 }

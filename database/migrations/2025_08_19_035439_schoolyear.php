@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('schoolyear', function (Blueprint $table) {
             $table->bigIncrements('schoolyearid');
-            $table->string('schoolyear', 10);
-            $table->string('desc', 100);
-            $table->boolean('is_active');
+            $table->string('schoolyear', 10)->nullable();
+            $table->string('desc', 100)->nullable();
+            $table->boolean('is_active')->nullable();
             $table->timestamps();
         });
     }

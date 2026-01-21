@@ -14,21 +14,21 @@ return new class extends Migration
         Schema::create('salary', function (Blueprint $table) {
             $table->bigIncrements('salaryid');
 
-            $table->unsignedBigInteger('employeeid');
-            $table->unsignedBigInteger('componentid');
+            $table->unsignedBigInteger('employeeid')->nullable();
+            $table->unsignedBigInteger('componentid')->nullable();
 
-            $table->double('amount');
+            $table->double('amount')->nullable();
 
             // Unik supaya tiap komponen untuk karyawan tidak dobel
-            $table->unique(['employeeid', 'componentid']);
+            $table->unique(['employeeid', 'componentid'])->nullable();
 
             $table->foreign('employeeid')
                 ->references('employeeid')->on('employee')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()->nullable();
 
             $table->foreign('componentid')
                 ->references('componentid')->on('componentsalary')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

@@ -10,25 +10,25 @@ class ParentModel extends Model
     use HasFactory;
 
     protected $table = 'parents';
-    protected $primaryKey = 'parentid';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'studentid',
-        'name',
-        'status',
-        'contact',
-        'occupation',
-        'education',
+        'siswa_id',
+        'nama_ayah',
+        'pendidikan_ayah',
+        'pekerjaan_ayah',
+        'nama_ibu',
+        'pendidikan_ibu',
+        'pekerjaan_ibu',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'studentid', 'studentid');
+        return $this->belongsTo(Student::class, 'siswa_id', 'id');
     }
 
     public function userrole()
     {
-        return $this->hasMany(UserRole::class, 'parentid', 'parentid');
+        return $this->hasMany(UserRole::class, 'parentid', 'id');
     }
 }

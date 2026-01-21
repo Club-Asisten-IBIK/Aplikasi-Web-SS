@@ -13,23 +13,27 @@ class Employee extends Model
 
     protected $fillable = [
         'nip',
-        'fullname',
-        'gender',
-        'fronttitle',
-        'backtitle',
-        'education',
-        'contact',
+        'nik',
+        'nama_lengkap',
+        'jenis_kelamin',
+        'gelar_depan',
+        'gelar_belakang',
+        'pendidikan',
+        'kontak',
         'email',
-        'address',
-        'place_of_birth',
-        'birthdate',
-        'photo',
+        'alamat',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'foto',
         'npwp',
-        'marital_status'
+        'agama',
+        'status_perkawinan',
+        'tanggal_masuk'
     ];
 
     protected $casts = [
-        'birthdate' => 'date'
+        'tanggal_lahir' => 'date',
+        'tanggal_masuk' => 'date'
     ];
 
     public function role()

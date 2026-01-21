@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('teacherid');
-            $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->unsignedBigInteger('subject_id')->nullable();
             $table->timestamps();
         });
     }

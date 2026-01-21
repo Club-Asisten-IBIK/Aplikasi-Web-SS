@@ -9,22 +9,18 @@ class StudentGuardians extends Model
 {
     use HasFactory;
     protected $table = 'student_guardians';
-    protected $primaryKey = 'student_guardianid';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
+
     protected $fillable = [
-        'studentid',
-        'guardianid',
-        'relationship',
-        'contact'
+        'siswa_id',
+        'nama',
+        'hubungan_keluarga',
+        'pendidikan',
+        'pekerjaan',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'studentid', 'studentid');
-    }
-
-    public function guardian()
-    {
-        return $this->belongsTo(Guardian::class, 'guardianid', 'guardianid');
+        return $this->belongsTo(Student::class, 'siswa_id', 'id');
     }
 }

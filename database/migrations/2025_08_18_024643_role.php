@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('role', function (Blueprint $table) {
             $table->bigIncrements('roleid');
-            $table->string('rolename', 30);
-            $table->boolean('isactive');
+            $table->string('rolename', 30)->nullable();
+            $table->boolean('isactive')->nullable();
             $table->timestamps();
         });
     }

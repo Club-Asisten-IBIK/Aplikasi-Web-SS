@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('componentsalary', function (Blueprint $table) {
-            $table->bigIncrements('componentid', 20);
-            $table->string('componentname', 50)->nullable();
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_kelas', 100)->nullable();
+            $table->string('tingkat', 50)->nullable();
+            $table->integer('kapasitas')->nullable();
+            $table->boolean('isactive')->default(true);
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('componentsalary');
+        Schema::dropIfExists('kelas');
     }
 };

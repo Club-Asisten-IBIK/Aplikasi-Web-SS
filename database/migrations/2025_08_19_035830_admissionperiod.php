@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('admissionperiod', function (Blueprint $table) {
             $table->bigIncrements('admissionperiodid');
-            $table->unsignedBigInteger('schoolyearid');
-            $table->foreign('schoolyearid')->references('schoolyearid')->on('schoolyear')->onDelete('cascade');
-            $table->string('periodname', 50);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->boolean('is_active');
+            $table->unsignedBigInteger('schoolyearid')->nullable();
+            $table->foreign('schoolyearid')->references('schoolyearid')->on('schoolyear')->onDelete('cascade')->nullable();
+            $table->string('periodname', 50)->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->boolean('is_active')->nullable();
             $table->timestamps();
         });
     }

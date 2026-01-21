@@ -9,19 +9,18 @@ class Physical_Records extends Model
 {
     use HasFactory;
     protected $table = 'physical_records';
-    protected $primaryKey = 'physical_recordid';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'studentid',
-        'height_cm',
-        'weight_kg',
-        'blood_type',
-        'medical_history',
+        'siswa_id',
+        'berat_badan',
+        'tinggi_badan',
+        'golongan_darah',
+        'riwayat_penyakit',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'studentid', 'studentid');
+        return $this->belongsTo(Student::class, 'siswa_id', 'id');
     }
 }

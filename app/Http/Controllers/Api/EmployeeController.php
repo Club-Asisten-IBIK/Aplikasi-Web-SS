@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
@@ -22,22 +24,34 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'nip' => 'required|string|max:12|unique:employee,nip',
-            'fullname' => 'required|string|max:100',
-            'gender' => 'required|in:laki-laki,perempuan',
-            'fronttitle' => 'nullable|string|max:20',
-            'backtitle' => 'nullable|string|max:20',
-            'education' => 'required|in:SMA,D1,D2,D3,S1,S2,S3',
-            'contact' => 'required|string|max:16',
-            'email' => 'required|email|max:100',
-            'address' => 'required|string|max:255',
-            'place_of_birth' => 'required|string|max:50',
-            'birthdate' => 'required|date',
-            'photo' => 'nullable|string|max:255',
+            'nik' => 'required|string|max:20|unique:employee,nik',
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'gelar_depan' => 'nullable|string|max:20',
+            'gelar_belakang' => 'nullable|string|max:20',
+            'pendidikan' => 'required|in:SD,SMP,SMA,D1,D2,D3,S1,S2,S3',
+            'kontak' => 'required|string|max:16',
+            'email' => 'required|email|max:16',
+            'alamat' => 'required|string',
+            'tempat_lahir' => 'required|string|max:50',
+            'tanggal_lahir' => 'required|date',
+            'foto' => 'nullable|string|max:255',
             'npwp' => 'required|string|max:50',
-            'marital_status' => 'required|in:single,married,divorced,widowed',
+            'agama' => 'required|in:islam,kristen,katolik,hindu,budha,konghucu,lainnya',
+            'status_perkawinan' => 'required|in:belum kawin,kawin,cerai hidup,cerai mati',
+            'tanggal_masuk' => 'required|date',
         ]);
 
         $employee = Employee::create($request->all());
+
+        // otomatis buat akun user dengan username & password = NIP
+        User::firstOrCreate(
+            ['username' => $employee->nip],
+            [
+                'password' => Hash::make($employee->nip),
+                'isactive' => true,
+            ]
+        );
 
         return response()->json([
             'status' => 'success',
@@ -61,19 +75,22 @@ class EmployeeController extends Controller
 
         $request->validate([
             'nip' => ['required', 'string', 'max:12', Rule::unique('employee', 'nip')->ignore($id, 'employeeid')],
-            'fullname' => 'required|string|max:100',
-            'gender' => 'required|in:laki-laki,perempuan',
-            'fronttitle' => 'nullable|string|max:20',
-            'backtitle' => 'nullable|string|max:20',
-            'education' => 'required|in:SMA,D1,D2,D3,S1,S2,S3',
-            'contact' => 'required|string|max:16',
-            'email' => 'required|email|max:100',
-            'address' => 'required|string|max:255',
-            'place_of_birth' => 'required|string|max:50',
-            'birthdate' => 'required|date',
-            'photo' => 'nullable|string|max:255',
+            'nik' => ['required', 'string', 'max:20', Rule::unique('employee', 'nik')->ignore($id, 'employeeid')],
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'gelar_depan' => 'nullable|string|max:20',
+            'gelar_belakang' => 'nullable|string|max:20',
+            'pendidikan' => 'required|in:SD,SMP,SMA,D1,D2,D3,S1,S2,S3',
+            'kontak' => 'required|string|max:16',
+            'email' => 'required|email|max:16',
+            'alamat' => 'required|string',
+            'tempat_lahir' => 'required|string|max:50',
+            'tanggal_lahir' => 'required|date',
+            'foto' => 'nullable|string|max:255',
             'npwp' => 'required|string|max:50',
-            'marital_status' => 'required|in:single,married,divorced,widowed',
+            'agama' => 'required|in:islam,kristen,katolik,hindu,budha,konghucu,lainnya',
+            'status_perkawinan' => 'required|in:belum kawin,kawin,cerai hidup,cerai mati',
+            'tanggal_masuk' => 'required|date',
         ]);
 
         $employee->update($request->all());

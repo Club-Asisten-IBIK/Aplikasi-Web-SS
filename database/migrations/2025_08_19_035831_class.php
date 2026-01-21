@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('class', function (Blueprint $table) {
             $table->bigIncrements('classid');
-            $table->unsignedBigInteger('teacherid');
-            $table->string('classname', 100);
-            $table->enum('gradelevel', ['TK-A', 'TK-B', '1', '2', '3', '4', '5', '6', '7', '8']);
-            $table->integer('capacity');
-            $table->boolean('isactive')->default(true);
+            $table->unsignedBigInteger('teacherid')->nullable();
+            $table->string('classname', 100)->nullable();
+            $table->enum('gradelevel', ['TK-A', 'TK-B', '1', '2', '3', '4', '5', '6', '7', '8'])->nullable();
+            $table->integer('capacity')->nullable();
+            $table->boolean('isactive')->default(true)->nullable();
             $table->timestamps();
         });
     }

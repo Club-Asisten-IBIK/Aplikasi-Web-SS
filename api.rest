@@ -33,3 +33,100 @@ Content-Type: application/json
   "password": "P00123456",
   "status": "Aktif"
 }
+
+###
+GET http://localhost:8000/api/parents
+
+###
+POST http://localhost:8000/api/students
+Accept: application/json
+Content-Type: application/json
+
+{
+  "sekolah_id": 1,
+  "kelas_id": 1,
+  "nomor_induk": "S0001",
+  "nama_lengkap": "Nama Siswa",
+  "nama_panggilan": "Siswa",
+  "jenis_kelamin": "Laki-laki",
+  "tempat_lahir": "Kota",
+  "tanggal_lahir": "2015-01-01",
+  "wilayah": "Dalam Kota",
+  "kewarganegaraan": "WNI",
+  "jumlah_saudara_kandung": 0,
+  "jumlah_saudara_tiri": 0,
+  "jumlah_saudara_angkat": 0,
+  "bahasa_rumah": "Indonesia",
+  "alamat": "Alamat lengkap",
+  "status_tempat_tinggal": "Orang Tua",
+  "jarak_km": 1.5,
+  "telepon": "08123456789",
+  "status_siswa": "Aktif",
+  "tanggal_masuk": "2025-07-01"
+}
+
+###
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "username": "S0001",
+  "password": "S0001"
+}
+
+###
+POST http://localhost:8000/api/sekolah
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nama": "SD Contoh",
+  "alamat": "Jl. Contoh",
+  "telepon": "021123456"
+}
+
+###
+POST http://localhost:8000/api/kelas
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nama_kelas": "Kelas 1A",
+  "tingkat": "1",
+  "kapasitas": 30
+}
+
+###
+POST http://localhost:8000/api/employees
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nip": "EMP0001",
+  "nik": "3201010101010001",
+  "nama_lengkap": "Pegawai Satu",
+  "jenis_kelamin": "laki-laki",
+  "gelar_depan": null,
+  "gelar_belakang": null,
+  "pendidikan": "S1",
+  "kontak": "081234567890",
+  "email": "pegawai1@exa.com",
+  "alamat": "Alamat pegawai",
+  "tempat_lahir": "Kota",
+  "tanggal_lahir": "1990-01-01",
+  "foto": null,
+  "npwp": "12.345.678.9-012.345",
+  "agama": "islam",
+  "status_perkawinan": "belum kawin",
+  "tanggal_masuk": "2025-01-01"
+}
+
+###
+POST http://localhost:8000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "EMP0001",
+  "password": "EMP0001"
+}
